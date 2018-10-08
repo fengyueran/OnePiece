@@ -1,0 +1,7 @@
+{
+  "name": "onepiece",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.4.1"
+  }
+}
