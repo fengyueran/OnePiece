@@ -1,6 +1,10 @@
-import { configure } from '@storybook/react';
+import { configure, addDecorator, setAddon } from '@storybook/react';
+import chaptersAddon, { setDefaults } from 'react-storybook-addon-chapters';
+import { withKnobs } from '@storybook/addon-knobs/react';
 
-// automatically import all files ending in *.stories.js
+setAddon(chaptersAddon);
+addDecorator(withKnobs);
+
 const req = require.context('../stories', true, /.stories.js$/);
 function loadStories() {
   req.keys().forEach(filename => req(filename));
