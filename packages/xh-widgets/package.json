@@ -1,6 +1,6 @@
 {
-  "name": "@xh/widgets",
-  "version": "0.1.0",
+  "name": "@xinghunm/widgets",
+  "version": "0.0.1",
   "main": "index.js",
   "dependencies": {
     "autoprefixer": "7.1.6",
