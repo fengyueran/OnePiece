@@ -67,12 +67,26 @@
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-react": "^7.10.0",
+    "react-storybook-addon-chapters": "^2.1.5",
+    "react-storybook-addon-props-combinations": "^1.0.1",
+    "@storybook/addon-actions": "^3.4.11",
+    "@storybook/addon-info": "^3.4.7",
+    "@storybook/addon-knobs": "^3.4.7",
+    "@storybook/addon-links": "^3.4.11",
+    "@storybook/addon-notes": "^3.4.7",
+    "@storybook/addon-options": "^3.4.7",
+    "@storybook/addons": "^3.4.11",
+    "@storybook/react": "^3.4.11",
+    "storybook-addon-smart-knobs": "^3.3.1",
+    "storybook-readme": "^3.3.0",
     "raf": "^3.4.0"
   },
   "scripts": {
     "start": "PORT=1989 node scripts/start.js",
     "build": "rm -rf lib && NODE_ENV=production node_modules/babel-cli/bin/babel.js src --out-dir lib",
     "test": "jest test --colors",
-    "coverage": "jest --colors --coverage"
+    "coverage": "jest --colors --coverage",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   }
 }
