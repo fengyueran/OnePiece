@@ -5,6 +5,7 @@
 // IMPORTANT
 // When you add this file, we won't add the default configurations which is similar
 // to "React Create App". This only has babel loader to load JavaScript.
+const path = require('path');
 
 module.exports = {
   plugins: [
@@ -12,6 +13,13 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'],
+        include: [
+          path.resolve(__dirname, "../stories"),
+        ],
+      },
       // add your custom rules.
     ],
   },
