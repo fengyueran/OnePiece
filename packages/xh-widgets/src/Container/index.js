@@ -1,5 +1,5 @@
 export { 
-  Container,
+  FlexContainer,
   VContainer,
   LineContainer
 } from './Container';
