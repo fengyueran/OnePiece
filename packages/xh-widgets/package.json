@@ -1,7 +1,6 @@
 {
   "name": "@xh/widgets",
   "version": "0.1.0",
-  "private": true,
   "main": "index.js",
   "dependencies": {
     "autoprefixer": "7.1.6",
