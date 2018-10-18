@@ -83,5 +83,8 @@
   "files": [
     "index.js",
     "lib"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
