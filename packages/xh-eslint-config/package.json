@@ -2,7 +2,7 @@
   "name": "@xinghunm/eslint-config",
   "version": "0.0.1",
   "main": "index.js",
-  "devDependencies": {
+  "dependencies": {
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.13.0",
@@ -10,8 +10,7 @@
     "eslint-plugin-react": "^7.10.0"
   },
   "files": [
-    "index.js",
-    "lib"
+    "index.js"
   ],
   "publishConfig": {
     "access": "public"
