@@ -2,7 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { readyToLoadPDF, loadPDF } from './load-page';
+import PDFLoader from './pdf-loader';
+import Spinner from './Spinner';
 
 const ViewerContainer = styled.div`
   position: relative;
@@ -40,25 +41,41 @@ const Viewer = styled.div`
     background-color: white;
   }
 `;
-// const Spanner = ({ error }) => (
-//   <div className="loadStatus">
-//     {
-//       error ? <span>加载失败</span> : <div className="spanner">
-//         <div className="loader" />
-//       </div>
-//     }
-//   </div>);
+
+const LoadStatus = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: white;
+  justify-content: center;
+  border: 1px solid darkgray; 
+  position: absolute;
+  left: 0;
+  top: 0;
+  span {
+    font-size: 20px;
+    color: #4A4A4A;
+  }
+`;
 
 
-// Spanner.propTypes = {
-//   error: PropTypes.bool,
-// };
+const LoaddingStatus = ({ error }) => (
+  <LoadStatus>
+    {
+      error ? <span>加载失败</span>
+        : <Spinner />
+    }
+  </LoadStatus>);
+
+LoaddingStatus.propTypes = {
+  error: PropTypes.bool.isRequired,
+};
 
 class PDFViewer extends React.Component {
   state = {
     pageLoading: true,
     loadError: false,
-    shouldShowDialog: false,
   }
 
   static propTypes = {
@@ -67,7 +84,12 @@ class PDFViewer extends React.Component {
 
   componentDidMount() {
     const { pdfPath } = this.props;
-    readyToLoadPDF(pdfPath).then(({ pageNums }) => {
+    const viewerContainer = document.getElementById('PDF_WIDGET');
+    const width = viewerContainer.clientWidth;
+    const viewer = document.getElementById('PDF_VIEWER');
+    
+    this.pdfLoader = new PDFLoader(width, viewer);
+    this.pdfLoader.loadPDF(pdfPath).then(() => {
       if (!this.unMount) this.setState({ pageLoading: false, loadError: false });
     }).catch((e) => {
       if (!this.unMount) this.setState({ pageLoading: true, loadError: true });
@@ -76,14 +98,16 @@ class PDFViewer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.pdfPath !== this.props.pdfPath) { // eslint-disable-line
-      this.setState({ pageLoading: true, loadError: false, shouldShowDialog: false });
+      this.setState({ pageLoading: true, loadError: false });
       const pdfPath = nextProps.pdfPath;
-      this.loadTask = loadPDF(pdfPath).then(({ documentId }) => {
-        if (documentId === pdfPath) {
+      this.pdfLoader.loadPDF(pdfPath).then((res) => {
+        const needPostSuccess = res.pdfPath === pdfPath;
+        if (needPostSuccess) {
           this.setState({ pageLoading: false, loadError: false });
         }
-      }).catch(({ e, documentId }) => {
-        if (documentId === pdfPath) {
+      }).catch((res) => {
+        const needPostError = res.pdfPath === pdfPath;
+        if (needPostError) {
           this.setState({ pageLoading: true, loadError: true });
         }
       });
@@ -95,22 +119,17 @@ class PDFViewer extends React.Component {
   }
 
   render() {
-    const { pdfPath } = this.props;
-    const { pageLoading, shouldShowDialog, loadError } = this.state;
+    const { pageLoading, loadError } = this.state;
     return (
       <ViewerContainer id="PDF_WIDGET">
         <Content id="PDF_WRAPPER">
           <Viewer id="PDF_VIEWER" /> 
         </Content>
-        {/* {
-          pageLoading && <Spanner error={loadError} />
-        } */}
+        {
+          pageLoading && <LoaddingStatus error={loadError} />
+        }
       </ViewerContainer>);
   }
 }
-
-PDFViewer.propTypes = {
-  pdfPath: PropTypes.string.isRequired,
-};
 
 export default PDFViewer;

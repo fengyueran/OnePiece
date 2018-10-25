@@ -5,7 +5,6 @@ const PAGE_TEMPLATE = `
     <div class="canvasWrapper">
       <canvas></canvas>
     </div>
-    <svg class="annotationLayer"></svg>
   </div>
 `;
 
@@ -164,7 +163,7 @@ export function renderPage(pageNumber, renderOptions) {
     return pdfPage.render({ canvasContext, viewport, transform }).then(() => {
       // Indicate that the page was loaded
       page.setAttribute('data-loaded', 'true');
-      return [pdfPage,, page];
+      return [pdfPage, page];
     });
   });
 }

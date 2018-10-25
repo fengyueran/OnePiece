@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
 
-const Spinner = styled.div`
+const Loader = styled.div`
   border-radius: 50%;
   position: relative;
   top: 20px;
@@ -43,4 +44,15 @@ const Spinner = styled.div`
   }  
 `;
 
-export default Spinner;
+const Spinner = styled.div`
+  width: 50px;
+  height: 50px;
+`;
+
+const SpinnerLoading = () => (
+  <Spinner>
+    <Loader />
+  </Spinner>
+);
+
+export default SpinnerLoading;
