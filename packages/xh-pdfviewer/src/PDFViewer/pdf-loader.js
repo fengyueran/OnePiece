@@ -17,7 +17,12 @@ PDFJS.GlobalWorkerOptions.workerSrc = process.env.NODE_ENV === 'development'
 // });
 
 class PDFLoader {
-  constructor(pageWidth, viewer) {
+  constructor(viewer, option = {}) {
+    const { workerSrc } = option;
+    if (workerSrc) {
+      PDFJS.GlobalWorkerOptions.workerSrc = workerSrc;
+    }
+    const pageWidth = option.pageWidth || 612;
     this._viewer = viewer;
     const _SCROLLBAR_WIDTH = 17;
     this._RENDER_OPTIONS = {

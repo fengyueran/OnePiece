@@ -4,6 +4,7 @@
     "@xinghunm/eslint-config"
   ],
   "rules": {
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "react/require-default-props": "off"
   }
 }

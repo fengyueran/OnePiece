@@ -80,15 +80,16 @@ class PDFViewer extends React.Component {
 
   static propTypes = {
     pdfPath: PropTypes.string.isRequired,
+    workerSrc: PropTypes.string,
   };
 
   componentDidMount() {
-    const { pdfPath } = this.props;
+    const { pdfPath, workerSrc } = this.props;
     const viewerContainer = document.getElementById('PDF_WIDGET');
     const width = viewerContainer.clientWidth;
     const viewer = document.getElementById('PDF_VIEWER');
     
-    this.pdfLoader = new PDFLoader(width, viewer);
+    this.pdfLoader = new PDFLoader(viewer, { pageWidth: width, workerSrc });
     this.pdfLoader.loadPDF(pdfPath).then(() => {
       if (!this.unMount) this.setState({ pageLoading: false, loadError: false });
     }).catch((e) => {
