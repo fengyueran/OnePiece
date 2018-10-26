@@ -59,7 +59,6 @@ const LoadStatus = styled.div`
   }
 `;
 
-
 const LoaddingStatus = ({ error }) => (
   <LoadStatus>
     {
@@ -79,18 +78,18 @@ class PDFViewer extends React.Component {
   }
 
   static propTypes = {
-    pdfPath: PropTypes.string.isRequired,
+    pdfSrc: PropTypes.string.isRequired,
     workerSrc: PropTypes.string,
   };
 
   componentDidMount() {
-    const { pdfPath, workerSrc } = this.props;
+    const { pdfSrc, workerSrc } = this.props;
     const viewerContainer = document.getElementById('PDF_WIDGET');
     const width = viewerContainer.clientWidth;
     const viewer = document.getElementById('PDF_VIEWER');
     
     this.pdfLoader = new PDFLoader(viewer, { pageWidth: width, workerSrc });
-    this.pdfLoader.loadPDF(pdfPath).then(() => {
+    this.pdfLoader.loadPDF(pdfSrc).then(() => {
       if (!this.unMount) this.setState({ pageLoading: false, loadError: false });
     }).catch((e) => {
       if (!this.unMount) this.setState({ pageLoading: true, loadError: true });
@@ -98,16 +97,16 @@ class PDFViewer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.pdfPath !== this.props.pdfPath) { // eslint-disable-line
+    if (nextProps.pdfSrc !== this.props.pdfSrc) { // eslint-disable-line
       this.setState({ pageLoading: true, loadError: false });
-      const pdfPath = nextProps.pdfPath;
-      this.pdfLoader.loadPDF(pdfPath).then((res) => {
-        const needPostSuccess = res.pdfPath === pdfPath;
+      const pdfSrc = nextProps.pdfSrc;
+      this.pdfLoader.loadPDF(pdfSrc).then((res) => {
+        const needPostSuccess = res.pdfSrc === pdfSrc;
         if (needPostSuccess) {
           this.setState({ pageLoading: false, loadError: false });
         }
       }).catch((res) => {
-        const needPostError = res.pdfPath === pdfPath;
+        const needPostError = res.pdfSrc === pdfSrc;
         if (needPostError) {
           this.setState({ pageLoading: true, loadError: true });
         }
