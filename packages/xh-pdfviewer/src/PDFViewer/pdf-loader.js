@@ -1,9 +1,8 @@
 import PDFJS from 'pdfjs-dist';
 import { renderPage } from './page';
 
-PDFJS.GlobalWorkerOptions.workerSrc = process.env.NODE_ENV === 'development'
-  ? './pdf.worker.js'
-  : 'external/pdf/pdf.worker.js'; 
+PDFJS.GlobalWorkerOptions.workerSrc = 'external/pdf/pdf.worker.js';
+
 
 // document.getElementById('content-wrapper').addEventListener('scroll', function (e) {
 //   let visiblePageNum = Math.round(e.target.scrollTop / PAGE_HEIGHT) + 1;
@@ -64,6 +63,7 @@ class PDFLoader {
           resolve({ pageNums, pdfPath });
         });
       }).catch((e) => {
+        console.error('Load pdf error:', e);
         reject({ e, pdfPath }); //eslint-disable-line
       });
     };
