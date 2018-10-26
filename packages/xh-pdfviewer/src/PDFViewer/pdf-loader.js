@@ -2,7 +2,7 @@ import PDFJS from 'pdfjs-dist';
 import { renderPage } from './page';
 
 PDFJS.GlobalWorkerOptions.workerSrc = process.env.NODE_ENV === 'development'
-  ? 'node_modules/pdfjs-dist/build/pdf.worker.js'
+  ? './pdf.worker.js'
   : 'external/pdf/pdf.worker.js'; 
 
 // document.getElementById('content-wrapper').addEventListener('scroll', function (e) {
