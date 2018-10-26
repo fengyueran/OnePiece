@@ -62,7 +62,7 @@
   },
   "scripts": {
     "start": "PORT=1989 node scripts/start.js",
-    "build": "rm -rf lib && NODE_ENV=production node_modules/babel-cli/bin/babel.js src --ignore test-show --out-dir lib",
+    "build": "rm -rf lib && NODE_ENV=production node_modules/babel-cli/bin/babel.js src --ignore test-show --out-dir lib && cp external/pdf/pdf.worker.js lib/PDFViewer",
     "test": "jest test --colors",
     "coverage": "jest --colors --coverage"
   },
