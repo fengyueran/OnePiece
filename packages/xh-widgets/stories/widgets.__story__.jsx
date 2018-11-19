@@ -1,15 +1,16 @@
-
-
 /*eslint-disable*/
 import React from 'react';
 import styled from 'styled-components';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { withSmartKnobs } from 'storybook-addon-smart-knobs';
 import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
 import { FlexContainer, LineContainer, VContainer } from '../src/Container';
+import {CircularProgressBar} from '../src/ProgressBar'
 import classes from './main.css';
 
 const Card = styled.div`
@@ -48,8 +49,8 @@ storiesOf('Widgets', module)
               style={{ color: 'blue' }}
             >
               {
-                [1, 2, 3].map(() => (
-                  <Card style={{ margin: 5 }}/>
+                [1, 2, 3].map((v, k) => (
+                  <Card key={k} style={{ margin: 5 }}/>
                 ))
               }
             </FlexContainer>),
@@ -76,8 +77,8 @@ storiesOf('Widgets', module)
               style={{ color: 'blue' }}
             >
               {
-                [1, 2, 3].map(() => (
-                  <Card />
+                [1, 2, 3].map((v, k) => (
+                  <Card key={k} />
                 ))
               }
             </LineContainer>),
@@ -104,8 +105,8 @@ storiesOf('Widgets', module)
               style={{ color: 'blue' }}
             >
               {
-                [1, 2, 3].map(() => (
-                  <Card style={{ margin: 5 }} />
+                [1, 2, 3].map((v, k) => (
+                  <Card key={k} style={{ margin: 5 }} />
                 ))
               }
             </VContainer>),
@@ -120,3 +121,6 @@ storiesOf('Widgets', module)
       },
     ],
   })
+  .addDecorator(withSmartKnobs)
+  .add('CircularProgressBar', () => (<CircularProgressBar size={100} thickness={3} value={10} />))
+  
