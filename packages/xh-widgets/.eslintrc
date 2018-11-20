@@ -1,30 +1,6 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "airbnb"
+    "@xinghunm/eslint-config"
   ],
-  "rules": {
-    "quotes": 0,
-    "comma-dangle": "off",
-    "no-param-reassign": "off",
-    "react/forbid-prop-types": "off",
-    "no-console": "off",
-    "eol-last": "off",
-    "no-unused-vars": "warn",
-    "no-trailing-spaces": "off",
-    "prefer-destructuring": "off",
-    "react/require-default-props": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/jsx-one-expression-per-line": "off",
-    "react/prefer-stateless-function": "off",
-    "import/prefer-default-export": "off"
-  },
-  "env": {
-    "es6": true,
-    "node": true,
-    "mocha": true,
-    "browser": true,
-    "jquery": true,
-    "jasmine": true
-  }
 }
