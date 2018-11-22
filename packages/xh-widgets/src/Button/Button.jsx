@@ -32,18 +32,21 @@ const Container = styled.span`
   justify-content: inherit;
 `;
 
-const Button = ({ children, style, className }) => (
+const Button = ({ 
+  isRipple, children, style, className
+}) => (
   <ButtonBase 
     style={style}
     cssStyle={ButtonStyle}
     className={className}
-    focusRipple
+    isRipple={isRipple}
   >
     <Container>{children}</Container>
   </ButtonBase>
 );
 
 Button.propTypes = {
+  isRipple: PropTypes.bool,
   style: PropTypes.object,
   className: PropTypes.string,
   children: PropTypes.node,

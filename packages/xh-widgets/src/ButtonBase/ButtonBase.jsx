@@ -19,11 +19,17 @@ const StyledButtonBase = styled.button`
 
 class ButtonBase extends React.Component {
   handleMouseDown = (e) => {
-    this.ripple.start(e);
+    const { isRipple } = this.props;
+    if (isRipple) {
+      this.ripple.start(e);
+    }
   }
 
   handleMouseUp = (e) => {
-    this.ripple.stop(e);
+    const { isRipple } = this.props;
+    if (isRipple) {
+      this.ripple.stop(e);
+    }
   }
 
   onRippleRef = (node) => {
@@ -49,11 +55,15 @@ class ButtonBase extends React.Component {
 }
 
 ButtonBase.propTypes = {
+  isRipple: PropTypes.bool,
   style: PropTypes.object,
   cssStyle: PropTypes.array,
   className: PropTypes.string,
   children: PropTypes.node,
 };
 
+ButtonBase.defaultProps = {
+  isRipple: true,
+};
 
 export default ButtonBase;
