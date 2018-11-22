@@ -31,10 +31,14 @@ class ButtonBase extends React.Component {
   };
 
   render() {
-    const { cssStyle, children } = this.props;
+    const { 
+      className, cssStyle, style, children
+    } = this.props;
     return (
       <StyledButtonBase
+        style={style}
         cssStyle={cssStyle}
+        className={className}
         onMouseUp={this.handleMouseUp}
         onMouseDown={this.handleMouseDown}
       >
@@ -45,7 +49,9 @@ class ButtonBase extends React.Component {
 }
 
 ButtonBase.propTypes = {
+  style: PropTypes.object,
   cssStyle: PropTypes.array,
+  className: PropTypes.string,
   children: PropTypes.node,
 };
 
