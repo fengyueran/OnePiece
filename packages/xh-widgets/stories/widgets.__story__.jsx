@@ -10,8 +10,10 @@ import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
 import { FlexContainer, LineContainer, VContainer } from '../src/Container';
-import {CircularProgressBar} from '../src/ProgressBar'
+import { CircularProgressBar } from '../src/ProgressBar'
+import ButtonWithRipple from '../src/Button'
 import classes from './main.css';
+import icon from '../assets/next@2x.png';
 
 const Card = styled.div`
   width: 400px;
@@ -123,4 +125,8 @@ storiesOf('Widgets', module)
   })
   .addDecorator(withSmartKnobs)
   .add('CircularProgressBar', () => (<CircularProgressBar size={100} thickness={3} value={10} />))
-  
+  .add('Button', () => (
+    <ButtonWithRipple>
+      <img src={icon} style={{ width: 25, marginRight: 5 }} />
+      Submit
+    </ButtonWithRipple>))
