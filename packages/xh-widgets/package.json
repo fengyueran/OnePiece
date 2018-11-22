@@ -75,7 +75,7 @@
   },
   "scripts": {
     "start": "PORT=1989 node scripts/start.js",
-    "build": "rm -rf lib && NODE_ENV=production node_modules/babel-cli/bin/babel.js src --out-dir lib",
+    "build": "rm -rf lib && NODE_ENV=production node_modules/babel-cli/bin/babel.js --ignore src/app.js src --out-dir lib",
     "test": "jest test --colors",
     "coverage": "jest --colors --coverage",
     "storybook": "start-storybook -p 6006",
