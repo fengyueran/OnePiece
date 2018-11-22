@@ -25,13 +25,21 @@ const ButtonStyle = css`
   }
 `;
 
-const Button = (props) => {
-  console.log('222222222222', ButtonStyle);
-  return (
-    <ButtonBase cssStyle={ButtonStyle} focusRipple>
-      <span>Submit</span>
-    </ButtonBase>
-  );
+const Container = styled.span`
+  width: 100%;
+  display: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+`;
+
+const Button = ({ children }) => (
+  <ButtonBase cssStyle={ButtonStyle} focusRipple>
+    <Container>{children}</Container>
+  </ButtonBase>
+);
+
+Button.propTypes = {
+  children: PropTypes.node,
 };
 
 export default Button;
