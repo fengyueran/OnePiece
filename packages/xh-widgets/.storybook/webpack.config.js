@@ -20,6 +20,13 @@ module.exports = {
           path.resolve(__dirname, "../stories"),
         ],
       },
+      {
+        test: /\.(jpe?g|png|webp|gif|svg)$/i,
+        use: ['url-loader?limit=100&fallback=file-loader'],
+        include: [
+          path.resolve(__dirname, "../assets"),
+        ],
+      },
       // add your custom rules.
     ],
   },
