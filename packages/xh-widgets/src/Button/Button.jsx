@@ -52,4 +52,4 @@ Button.propTypes = {
   children: PropTypes.node,
 };
 
-export default Button;
+export { Button };

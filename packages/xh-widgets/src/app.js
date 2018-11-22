@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import Button from './Button';
+import { Button } from './Button';
 
 const StyledButton = styled(Button)`
   background: #536DFE;
