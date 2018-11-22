@@ -38,10 +38,11 @@ class ButtonBase extends React.Component {
 
   render() {
     const { 
-      className, cssStyle, style, children
+      className, cssStyle, style, children, onClick
     } = this.props;
     return (
       <StyledButtonBase
+        onClick={onClick} 
         style={style}
         cssStyle={cssStyle}
         className={className}
@@ -60,6 +61,7 @@ ButtonBase.propTypes = {
   cssStyle: PropTypes.array,
   className: PropTypes.string,
   children: PropTypes.node,
+  onClick: PropTypes.func,
 };
 
 ButtonBase.defaultProps = {

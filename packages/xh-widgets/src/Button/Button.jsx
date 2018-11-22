@@ -33,9 +33,10 @@ const Container = styled.span`
 `;
 
 const Button = ({ 
-  isRipple, children, style, className
+  isRipple, children, style, className, onClick
 }) => (
-  <ButtonBase 
+  <ButtonBase
+    onClick={onClick} 
     style={style}
     cssStyle={ButtonStyle}
     className={className}
@@ -50,6 +51,7 @@ Button.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,
   children: PropTypes.node,
+  onClick: PropTypes.func,
 };
 
 export { Button };
