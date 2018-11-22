@@ -18,27 +18,12 @@ const StyledButtonBase = styled.button`
 `;
 
 class ButtonBase extends React.Component {
-  state = {
-
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.focusVisible && this.state.focusVisible) {
-      // this.ripple.pulsate();
-    }
-  }
-
   handleMouseDown = (e) => {
-    this.setState({ focusVisible: true });
     this.ripple.start(e);
   }
 
   handleMouseUp = (e) => {
     this.ripple.stop(e);
-  }
-
-  handleFocus = () => {
-    this.setState({ focusVisible: true });
   }
 
   onRippleRef = (node) => {
@@ -50,7 +35,6 @@ class ButtonBase extends React.Component {
     return (
       <StyledButtonBase
         cssStyle={cssStyle}
-        onFocus={this.handleFocus}
         onMouseUp={this.handleMouseUp}
         onMouseDown={this.handleMouseDown}
       >
