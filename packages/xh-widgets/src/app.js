@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Button } from './Button';
 
 const StyledButton = styled(Button)`
-  background: #536DFE;
+  background: #fffff;
 `;
 class App extends Component {
   render() {
