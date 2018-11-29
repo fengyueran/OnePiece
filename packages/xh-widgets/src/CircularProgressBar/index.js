@@ -63,3 +63,4 @@ CircularProgressBar.defaultProps = {
 };
 
 export { CircularProgressBar };
+export default CircularProgressBar;

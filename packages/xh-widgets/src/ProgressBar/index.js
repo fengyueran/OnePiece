@@ -1,1 +1,0 @@
-export { CircularProgressBar } from './CircularProgressBar';
