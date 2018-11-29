@@ -10,7 +10,8 @@
     "eslint-plugin-react": "^7.10.0"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "package.json"
   ],
   "publishConfig": {
     "access": "public"

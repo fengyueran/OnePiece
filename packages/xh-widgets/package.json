@@ -83,7 +83,8 @@
   },
   "files": [
     "index.js",
-    "lib"
+    "lib",
+    "package.json"
   ],
   "publishConfig": {
     "access": "public"
