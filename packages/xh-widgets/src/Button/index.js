@@ -33,14 +33,14 @@ const Container = styled.span`
 `;
 
 const Button = ({ 
-  isRipple, children, style, className, onClick
+  isRipple, children, style, className, ...other
 }) => (
   <ButtonBase
-    onClick={onClick} 
     style={style}
     cssStyle={ButtonStyle}
     className={className}
     isRipple={isRipple}
+    {...other}
   >
     <Container>{children}</Container>
   </ButtonBase>

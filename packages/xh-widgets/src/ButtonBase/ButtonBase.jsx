@@ -38,16 +38,16 @@ class ButtonBase extends React.Component {
 
   render() {
     const { 
-      className, cssStyle, style, children, onClick
+      className, cssStyle, style, children, ...other
     } = this.props;
     return (
       <StyledButtonBase
-        onClick={onClick} 
         style={style}
         cssStyle={cssStyle}
         className={className}
         onMouseUp={this.handleMouseUp}
         onMouseDown={this.handleMouseDown}
+        {...other}
       >
         {children}
         <TouchRipple ref={this.onRippleRef} />

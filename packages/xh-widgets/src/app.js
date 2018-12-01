@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import LineContainer from './LineContainer';
+import { LineContainer } from './LineContainer';
 import { Button } from './Button';
 
 const StyledButton = styled(Button)`
