@@ -1,7 +1,8 @@
 module.exports = {
   testEnvironment: "jsdom", // default
   verbose: true,
-  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$", // 匹配需要测试的文件
+  testRegex: "__test__/button.test.jsx", 
+  // testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$", // 匹配需要测试的文件
   testPathIgnorePatterns: ['/bin/', '/build/', '/dist/', '/lib/', '/node_modules/'],
   setupFiles: [
     "<rootDir>/config/jest/setupTests.js", // set up the testing environment before each test

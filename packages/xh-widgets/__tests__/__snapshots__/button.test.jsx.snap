@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Shallow Button snapshot 1`] = `
+<button
+  className="sc-bxivhb dFkqzt"
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+  style={undefined}
+>
+  <span
+    className="sc-ifAKCX jaxJng"
+  >
+    <div
+      id="children1"
+    />
+    <div
+      id="children2"
+    />
+  </span>
+  <span
+    className="sc-htpNat izwuVW"
+  />
+</button>
+`;
