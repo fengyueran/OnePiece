@@ -62,6 +62,7 @@
     "raf": "3.4.0",
     "react-storybook-addon-chapters": "^2.1.5",
     "react-storybook-addon-props-combinations": "^1.0.1",
+    "react-test-renderer": "^16.6.3",
     "resolve": "1.6.0",
     "storybook-addon-smart-knobs": "^3.3.1",
     "storybook-readme": "^3.3.0",
