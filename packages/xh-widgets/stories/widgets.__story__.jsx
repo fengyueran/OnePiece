@@ -9,8 +9,10 @@ import { withSmartKnobs } from 'storybook-addon-smart-knobs';
 import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
-import { FlexBox, LineBox, VerticalBox } from '../src/Container';
-import { CircularProgressBar } from '../src/ProgressBar'
+import { FlexBox } from '../src/FlexBox';
+import { LineBox } from '../src/LineBox';
+import { VerticalBox } from '../src/VerticalBox';
+import { CircularProgressBar } from '../src/CircularProgressBar'
 import { Button as ButtonWithRipple } from '../src/Button'
 import classes from './main.css';
 import icon from '../assets/next@2x.png';
@@ -124,7 +126,16 @@ storiesOf('Widgets', module)
     ],
   })
   .addDecorator(withSmartKnobs)
-  .add('CircularProgressBar', () => (<CircularProgressBar size={100} thickness={3} value={10} />))
+  .add('CircularProgressBar', () => (
+    <div>
+      <CircularProgressBar 
+      size={100}
+      thickness={3}
+      value={10}
+      pathColor='blue'
+      trailColor='gray'
+    />
+    </div>))
   .add('Button', () => (
     <ButtonWithRipple>
       <img src={icon} style={{ width: 25, marginRight: 5 }} />
