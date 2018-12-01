@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-const FlexContainer = styled.div`
+const FlexBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
 `;
 
-export { FlexContainer };
-export default FlexContainer;
+export { FlexBox };
+export default FlexBox;

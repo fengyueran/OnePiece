@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const VContainer = styled.div`
+const VerticalBox = styled.div`
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
@@ -8,5 +8,5 @@ const VContainer = styled.div`
   overflow: hidden;
 `;
 
-export { VContainer };
-export default VContainer;
+export { VerticalBox };
+export default VerticalBox;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import { VContainer } from '../src/VContainer';
+import { VerticalBox } from '../src/VerticalBox';
 
 const setup = (Component, props) => {
   const { children, ...res } = props;
@@ -13,32 +13,32 @@ const setup = (Component, props) => {
   return wrapper;
 };
 
-describe('VContainer Shallow', () => {
+describe('VerticalBox Shallow', () => {
   const children = [
     <div key="children1" id="children1" />,
     <div key="children2" id="children2" />
   ];
   const props = {
-    id: "VContainer",
+    id: "VerticalBox",
     children,
   };
 
-  const wrapper = setup(VContainer, props);
+  const wrapper = setup(VerticalBox, props);
   console.log(wrapper.debug());
 
-  it('VContainer should be render', () => {
-    expect(wrapper.find('#VContainer').exists()).toBe(true); 
+  it('VerticalBox should be render', () => {
+    expect(wrapper.find('#VerticalBox').exists()).toBe(true); 
   });
 
-  it('VContainer should be render children', () => {
-    expect(wrapper.find('#VContainer').children().length).toBe(children.length); 
+  it('VerticalBox should be render children', () => {
+    expect(wrapper.find('#VerticalBox').children().length).toBe(children.length); 
   });
 
-  it('VContainer snapshot', () => {
+  it('VerticalBox snapshot', () => {
     const Instance = (
-      <VContainer>
+      <VerticalBox>
         {children}
-      </VContainer>);
+      </VerticalBox>);
     const tree = renderer
       .create(Instance)
       .toJSON();

@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import { LineContainer } from '../src/LineContainer';
+import { FlexBox } from '../src/FlexBox';
 
 const setup = (Component, props) => {
   const { children, ...res } = props;
@@ -13,32 +13,32 @@ const setup = (Component, props) => {
   return wrapper;
 };
 
-describe('LineContainer Shallow', () => {
+describe('FlexBox Shallow', () => {
   const children = [
     <div key="children1" id="children1" />,
     <div key="children2" id="children2" />
   ];
   const props = {
-    id: "LineContainer",
+    id: "FlexBox",
     children,
   };
 
-  const wrapper = setup(LineContainer, props);
+  const wrapper = setup(FlexBox, props);
   console.log(wrapper.debug());
 
-  it('LineContainer should be render', () => {
-    expect(wrapper.find('#LineContainer').exists()).toBe(true); 
+  it('FlexBox should be render', () => {
+    expect(wrapper.find('#FlexBox').exists()).toBe(true); 
   });
 
-  it('LineContainer should be render children', () => {
-    expect(wrapper.find('#LineContainer').children().length).toBe(children.length); 
+  it('FlexBox should be render children', () => {
+    expect(wrapper.find('#FlexBox').children().length).toBe(children.length); 
   });
 
-  it('LineContainer snapshot', () => {
+  it('FlexBox snapshot', () => {
     const Instance = (
-      <LineContainer>
+      <FlexBox>
         {children}
-      </LineContainer>);
+      </FlexBox>);
     const tree = renderer
       .create(Instance)
       .toJSON();

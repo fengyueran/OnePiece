@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LineContainer Shallow LineContainer snapshot 1`] = `
+exports[`VerticalBox Shallow VerticalBox snapshot 1`] = `
 <div
-  className="sc-bdVaJa cQusm"
+  className="sc-bdVaJa eYIdNV"
 >
   <div
     id="children1"

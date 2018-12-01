@@ -9,7 +9,7 @@ import { withSmartKnobs } from 'storybook-addon-smart-knobs';
 import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
-import { FlexContainer, LineContainer, VContainer } from '../src/Container';
+import { FlexBox, LineBox, VerticalBox } from '../src/Container';
 import { CircularProgressBar } from '../src/ProgressBar'
 import { Button as ButtonWithRipple } from '../src/Button'
 import classes from './main.css';
@@ -34,19 +34,19 @@ storiesOf('Widgets', module)
   .addWithChapters(
     'Container',
   {
-    info: 'Container有三种FlexContainer, LineContainer以及VContainer。',
+    info: 'Container有三种FlexBox, LineBox以及VerticalBox。',
     chapters: [
       // List of chapters. Refer to Configuration Format section.
       {
-        title: '1）FlexContainer',
+        title: '1）FlexBox',
         sections: [
           // List of sections.
           {
             subtitle: `
-            FlexContainer为弹性容器，自动换行，如下图中的Card。
+            FlexBox为弹性容器，自动换行，如下图中的Card。
           `,
             sectionFn: () => (
-            <FlexContainer 
+            <FlexBox 
               className={classes["container"]}
               style={{ color: 'blue' }}
             >
@@ -55,7 +55,7 @@ storiesOf('Widgets', module)
                   <Card key={k} style={{ margin: 5 }}/>
                 ))
               }
-            </FlexContainer>),
+            </FlexBox>),
             options: {
               showSource: true,
               allowSourceToggling: true,
@@ -66,15 +66,15 @@ storiesOf('Widgets', module)
         ],
       },
       {
-        title: '2）LineContainer',
+        title: '2）LineBox',
         sections: [
           // List of sections.
           {
             subtitle: `
-            LineContainer使子元素水平排列，不换行，当空间不够时子元素等比缩放，如下图中的Card。
+            LineBox使子元素水平排列，不换行，当空间不够时子元素等比缩放，如下图中的Card。
           `,
             sectionFn: () => (
-            <LineContainer 
+            <LineBox 
               className={classes["container"]}
               style={{ color: 'blue' }}
             >
@@ -83,7 +83,7 @@ storiesOf('Widgets', module)
                   <Card key={k} />
                 ))
               }
-            </LineContainer>),
+            </LineBox>),
             options: {
               showSource: true,
               allowSourceToggling: true,
@@ -94,15 +94,15 @@ storiesOf('Widgets', module)
         ],
       },
       {
-        title: '3）VContainer',
+        title: '3）VerticalBox',
         sections: [
           // List of sections.
           {
             subtitle: `
-            VContainer使子元素垂直排列，当空间不够时子元素等比缩放，如下图中的Card。
+            VerticalBox使子元素垂直排列，当空间不够时子元素等比缩放，如下图中的Card。
           `,
             sectionFn: () => (
-            <VContainer 
+            <VerticalBox 
               className={classes["container"]}
               style={{ color: 'blue' }}
             >
@@ -111,7 +111,7 @@ storiesOf('Widgets', module)
                   <Card key={k} style={{ margin: 5 }} />
                 ))
               }
-            </VContainer>),
+            </VerticalBox>),
             options: {
               showSource: true,
               allowSourceToggling: true,

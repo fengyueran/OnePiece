@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LineContainer = styled.div`
+const LineBox = styled.div`
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
@@ -8,5 +8,5 @@ const LineContainer = styled.div`
   overflow: hidden;
 `;
 
-export { LineContainer };
-export default LineContainer;
+export { LineBox };
+export default LineBox;
