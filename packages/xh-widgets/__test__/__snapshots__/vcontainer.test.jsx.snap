@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VContainer Shallow VContainer snapshot 1`] = `
+<div
+  className="sc-bdVaJa eYIdNV"
+>
+  <div
+    id="children1"
+  />
+  <div
+    id="children2"
+  />
+</div>
+`;
