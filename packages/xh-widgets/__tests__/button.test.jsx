@@ -24,10 +24,16 @@ describe('Button Shallow', () => {
   };
 
   const wrapper = setup(Button, props);
-  console.log(wrapper.debug());
 
   it('Button should be render', () => {
     expect(wrapper.find('#Button').exists()).toBe(true); 
+  });
+
+
+  it('Can toggle touch Ripple effect', () => {
+    const Instance = <Button isRipple={false} />;
+    const buttonWrapper = shallow(Instance);
+    expect(buttonWrapper.find('ButtonBase').prop('isRipple')).toBe(false);
   });
 
   it('Button snapshot', () => {
@@ -39,5 +45,27 @@ describe('Button Shallow', () => {
       .create(Instance)
       .toJSON();
     expect(tree).toMatchSnapshot();
+  });
+
+  it('should handle click event', () => {
+    class TestButton extends React.Component {
+      state = {
+        className: null,
+      };
+
+      onClick = () => {
+        this.setState({ className: "clicked" });
+      }
+
+      render() {
+        const { className } = this.state;
+        return <Button id="Button" className={className} onClick={this.onClick}>Button</Button>;
+      }
+    }
+    const buttonWrapper = shallow(
+      <TestButton />
+    );
+    buttonWrapper.simulate('click');
+    expect(buttonWrapper.find('#Button').hasClass('clicked')).toBe(true);
   });
 });
