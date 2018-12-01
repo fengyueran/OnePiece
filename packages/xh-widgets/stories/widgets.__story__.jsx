@@ -127,15 +127,13 @@ storiesOf('Widgets', module)
   })
   .addDecorator(withSmartKnobs)
   .add('CircularProgressBar', () => (
-    <div>
       <CircularProgressBar 
-      size={100}
-      thickness={3}
-      value={10}
-      pathColor='blue'
-      trailColor='gray'
-    />
-    </div>))
+        size={100}
+        thickness={3}
+        value={10}
+        pathColor="blue"
+        trailColor="gray"
+      />))
   .add('Button', () => (
     <ButtonWithRipple>
       <img src={icon} style={{ width: 25, marginRight: 5 }} />
