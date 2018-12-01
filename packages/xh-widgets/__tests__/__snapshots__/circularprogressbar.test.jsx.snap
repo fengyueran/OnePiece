@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CircularProgressBar test CircularProgressBar snapshot 1`] = `
+<div
+  className="sc-bdVaJa hEvsdq"
+  role="progressbar"
+  style={
+    Object {
+      "height": 100,
+      "transform": "rotate(-90deg)",
+      "width": 100,
+    }
+  }
+>
+  <svg
+    viewBox="22 22 44 44"
+  >
+    <circle
+      cx={44}
+      cy={44}
+      fill="none"
+      r={20.5}
+      stroke="blue"
+      strokeWidth={3}
+    />
+    <circle
+      cx={44}
+      cy={44}
+      fill="none"
+      r={20.5}
+      stroke="red"
+      strokeWidth={3}
+      style={
+        Object {
+          "strokeDasharray": "128.805",
+          "strokeDashoffset": "64.403px",
+        }
+      }
+    />
+  </svg>
+</div>
+`;
