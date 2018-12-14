@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VerticalBox Shallow Sizer snapshot 1`] = `
+<div>
+  <div
+    className="sc-bdVaJa leDahT"
+  />
+  <div
+    className="sc-bwzfXH leNoIN"
+    size={18}
+  />
+  <div
+    className="sc-htpNat iIsBOR"
+    size={28}
+  />
+</div>
+`;
