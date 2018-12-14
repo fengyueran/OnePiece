@@ -45,6 +45,7 @@ class ButtonBase extends React.Component {
         style={style}
         cssStyle={cssStyle}
         className={className}
+        onMouseLeave={this.handleMouseUp}
         onMouseUp={this.handleMouseUp}
         onMouseDown={this.handleMouseDown}
         {...other}
