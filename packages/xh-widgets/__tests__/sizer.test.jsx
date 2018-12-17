@@ -10,8 +10,9 @@ const setup = (Component, props) => {
   return wrapper;
 };
 
-describe('VerticalBox Shallow', () => {
+describe('Sizer Shallow', () => {
   const sizerWrapper = setup(Sizer, { id: 'sizer' });
+
   it('Sizer should be render', () => {
     expect(sizerWrapper.find('#sizer').exists()).toBe(true); 
   });
