@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import ButtonBase from '../ButtonBase';
 import { fade } from '../utils/colorManipulator';
 
-const ButtonStyle = css`
+const ButtonContainer = styled(ButtonBase)`
   min-width: 64px;
   min-height: 36px;
   padding: 8px 16px;
@@ -21,7 +21,7 @@ const ButtonStyle = css`
   color: rgba(0, 0, 0, 0.87);
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   &:hover {
-    background-color: ${fade('rgba(0, 0, 0, 0.87)', 0.2)};
+    ${props => props.hasHover && `background-color: ${fade('rgba(0, 0, 0, 0.87)', 0.2)}`};
   }
 `;
 
@@ -33,25 +33,29 @@ const Container = styled.span`
 `;
 
 const Button = ({ 
-  isRipple, children, style, className, ...other
+  hasRipple, hasHover, children, className, ...other
 }) => (
-  <ButtonBase
-    style={style}
-    cssStyle={ButtonStyle}
+  <ButtonContainer
     className={className}
-    isRipple={isRipple}
+    hasRipple={hasRipple}
+    hasHover={hasHover}
     {...other}
   >
     <Container>{children}</Container>
-  </ButtonBase>
+  </ButtonContainer>
 );
 
 Button.propTypes = {
-  isRipple: PropTypes.bool,
-  style: PropTypes.object,
+  hasRipple: PropTypes.bool,
+  hasHover: PropTypes.bool,
   className: PropTypes.string,
   children: PropTypes.node,
   onClick: PropTypes.func,
+};
+
+Button.defaultProps = {
+  hasRipple: true,
+  hasHover: true
 };
 
 export { Button };

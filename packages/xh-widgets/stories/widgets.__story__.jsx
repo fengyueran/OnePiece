@@ -136,7 +136,7 @@ storiesOf('Widgets', module)
         trailColor="gray"
       />))
   .add('Button', () => (
-    <ButtonWithRipple isRipple>
+    <ButtonWithRipple hasRipple>
       <img src={icon} style={{ width: 25, marginRight: 5 }} />
       Submit
     </ButtonWithRipple>))

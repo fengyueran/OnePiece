@@ -14,20 +14,19 @@ const StyledButtonBase = styled.button`
   padding: 0;
   cursor: pointer;
   background: transparent;
-  ${props => props.cssStyle};
 `;
 
 class ButtonBase extends React.Component {
   handleMouseDown = (e) => {
-    const { isRipple } = this.props;
-    if (isRipple) {
+    const { hasRipple } = this.props;
+    if (hasRipple) {
       this.ripple.start(e);
     }
   }
 
   handleMouseUp = (e) => {
-    const { isRipple } = this.props;
-    if (isRipple) {
+    const { hasRipple } = this.props;
+    if (hasRipple) {
       this.ripple.stop(e);
     }
   }
@@ -38,12 +37,10 @@ class ButtonBase extends React.Component {
 
   render() {
     const { 
-      className, cssStyle, style, children, ...other
+      className, children, ...other
     } = this.props;
     return (
       <StyledButtonBase
-        style={style}
-        cssStyle={cssStyle}
         className={className}
         onMouseLeave={this.handleMouseUp}
         onMouseUp={this.handleMouseUp}
@@ -57,16 +54,14 @@ class ButtonBase extends React.Component {
 }
 
 ButtonBase.propTypes = {
-  isRipple: PropTypes.bool,
+  hasRipple: PropTypes.bool,
   style: PropTypes.object,
-  cssStyle: PropTypes.array,
   className: PropTypes.string,
   children: PropTypes.node,
-  onClick: PropTypes.func,
 };
 
 ButtonBase.defaultProps = {
-  isRipple: true,
+  hasRipple: true,
 };
 
 export default ButtonBase;
