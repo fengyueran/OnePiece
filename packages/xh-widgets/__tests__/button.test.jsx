@@ -33,7 +33,7 @@ describe('Button Shallow', () => {
   it('Can toggle touch Ripple effect', () => {
     const Instance = <Button hasRipple={false} />;
     const buttonWrapper = shallow(Instance);
-    expect(buttonWrapper.find('ButtonBase').prop('hasRipple')).toBe(false);
+    expect(buttonWrapper.find('Styled(ButtonBase)').prop('hasRipple')).toBe(false);
   });
 
   it('Button snapshot', () => {

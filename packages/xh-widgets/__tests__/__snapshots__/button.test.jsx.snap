@@ -2,13 +2,13 @@
 
 exports[`Button Shallow Button snapshot 1`] = `
 <button
-  className="sc-bxivhb dFkqzt"
+  className="sc-ifAKCX jLSQyr sc-bxivhb gDPPxL"
   onMouseDown={[Function]}
+  onMouseLeave={[Function]}
   onMouseUp={[Function]}
-  style={undefined}
 >
   <span
-    className="sc-ifAKCX jaxJng"
+    className="sc-EHOje jzIsUi"
   >
     <div
       id="children1"
