@@ -3,14 +3,14 @@
 exports[`VerticalBox Shallow Sizer snapshot 1`] = `
 <div>
   <div
-    className="sc-bdVaJa leDahT"
+    className="sc-bdVaJa kUhAfA"
   />
   <div
-    className="sc-bwzfXH leNoIN"
+    className="sc-bwzfXH hvNiVj"
     size={18}
   />
   <div
-    className="sc-htpNat iIsBOR"
+    className="sc-htpNat enWhWs"
     size={28}
   />
 </div>

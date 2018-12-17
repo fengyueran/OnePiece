@@ -16,14 +16,14 @@ describe('VerticalBox Shallow', () => {
     expect(sizerWrapper.find('#sizer').exists()).toBe(true); 
   });
 
-  const sizerXWrapper = setup(SizerX, { id: 'sizerX' });
+  const sizerXWrapper = setup(SizerX, { id: 'sizerX', size: 18 });
   it('SizerX should be render', () => {
-    expect(sizerXWrapper.find('#sizerX').exists()).toBe(true); 
+    expect(sizerXWrapper.find('#sizerX').props().size).toBe(18); 
   });
 
-  const sizerYWrapper = setup(SizerY, { id: 'sizerY' });
+  const sizerYWrapper = setup(SizerY, { id: 'sizerY', size: 20 });
   it('SizerY should be render', () => {
-    expect(sizerYWrapper.find('#sizerY').exists()).toBe(true); 
+    expect(sizerYWrapper.find('#sizerY').props().size).toBe(20); 
   });
 
   it('Sizer snapshot', () => {
