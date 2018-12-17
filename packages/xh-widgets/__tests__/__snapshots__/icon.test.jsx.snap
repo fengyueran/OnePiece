@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon shallow Icon snapshot 1`] = `
+<div>
+  <div
+    className="sc-bdVaJa vkNqG"
+    height={20}
+    src="test-file-stub"
+    width={20}
+  />
+</div>
+`;
