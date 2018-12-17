@@ -14,6 +14,7 @@ import { LineBox } from '../src/LineBox';
 import { VerticalBox } from '../src/VerticalBox';
 import { CircularProgressBar } from '../src/CircularProgressBar'
 import { Button as ButtonWithRipple } from '../src/Button'
+import { Icon } from '../src/Icon'
 import classes from './main.css';
 import icon from '../assets/next@2x.png';
 
@@ -135,7 +136,10 @@ storiesOf('Widgets', module)
         trailColor="gray"
       />))
   .add('Button', () => (
-    <ButtonWithRipple>
+    <ButtonWithRipple isRipple>
       <img src={icon} style={{ width: 25, marginRight: 5 }} />
       Submit
     </ButtonWithRipple>))
+  .add('Icon', () => (
+      <Icon src={icon} tintColor="blue" />
+  ))
