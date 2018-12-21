@@ -20,7 +20,11 @@ module.exports = {
     "react/destructuring-assignment": "off",
     "react/no-find-dom-node": "off",
     "no-mixed-operators": "off",
-    "react/require-default-props": "off"
+    "no-underscore-dangle": "off",
+    "react/require-default-props": "off",
+    "react/no-array-index-key": "off",
+    "react/jsx-boolean-value": "off",
+    "react/destructuring-assignment": "off"
   },
   "env": {
     "es6": true,
