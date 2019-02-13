@@ -4,12 +4,13 @@ const Sizer = styled.div`
   flex-grow: 1;
 `;
 
-const SizerX = styled.div`
+Sizer.X = styled.div`
   width: ${props => `${props.size}px`}
 `;
 
-const SizerY = styled.div`
+Sizer.Y = styled.div`
   height: ${props => `${props.size}px`}
 `;
 
-export { Sizer, SizerX, SizerY };
+export { Sizer };
+export default Sizer;
