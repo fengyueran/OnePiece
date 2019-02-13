@@ -24,7 +24,8 @@ module.exports = {
     "react/require-default-props": "off",
     "react/no-array-index-key": "off",
     "react/jsx-boolean-value": "off",
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "jsx-a11y/anchor-is-valid": "off"
   },
   "env": {
     "es6": true,
