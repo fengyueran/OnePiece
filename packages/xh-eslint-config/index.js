@@ -25,7 +25,10 @@ module.exports = {
     "react/no-array-index-key": "off",
     "react/jsx-boolean-value": "off",
     "react/destructuring-assignment": "off",
-    "jsx-a11y/anchor-is-valid": "off"
+    "jsx-a11y/anchor-is-valid": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/forbid-prop-types": "off"
   },
   "env": {
     "es6": true,
