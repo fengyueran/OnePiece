@@ -1,6 +1,6 @@
 {
   "name": "@xinghunm/widgets",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "main": "index.js",
   "dependencies": {
     "history": "^4.7.2",
@@ -22,7 +22,7 @@
     "@storybook/addon-notes": "^4.0.8",
     "@storybook/addons": "^4.0.9",
     "@storybook/react": "^4.0.9",
-    "@xinghunm/eslint-config": "^0.0.6",
+    "@xinghunm/eslint-config": "^0.0.7",
     "autoprefixer": "7.1.6",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
