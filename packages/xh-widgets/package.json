@@ -4,13 +4,13 @@
   "main": "index.js",
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.4.0",
-    "@storybook/addon-actions": "^4.0.9",
-    "@storybook/addon-info": "^4.0.9",
-    "@storybook/addon-knobs": "^4.0.9",
-    "@storybook/addon-links": "^4.0.9",
-    "@storybook/addon-notes": "^4.0.8",
-    "@storybook/addons": "^4.0.9",
-    "@storybook/react": "^4.0.9",
+    "@storybook/addon-actions": "^5.0.10",
+    "@storybook/addon-info": "^5.0.10",
+    "@storybook/addon-knobs": "^5.0.10",
+    "@storybook/addon-links": "^5.0.10",
+    "@storybook/addon-notes": "^5.0.10",
+    "@storybook/addons": "^5.0.10",
+    "@storybook/react": "^5.0.10",
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.12",
     "eslint": "5.12.0",
@@ -26,7 +26,8 @@
     "react-storybook-addon-props-combinations": "^1.0.1",
     "source-map-explorer": "^1.8.0",
     "storybook-addon-smart-knobs": "^3.3.1",
-    "storybook-readme": "^3.3.0"
+    "storybook-readme": "^3.3.0",
+    "@xinghunm/eslint-config": "^0.0.8"
   },
   "scripts": {
     "start": "PORT=1989 react-app-rewired start",
@@ -52,7 +53,6 @@
     "not op_mini all"
   ],
   "dependencies": {
-    "@xinghunm/eslint-config": "^0.0.8",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
