@@ -5,11 +5,11 @@ const Sizer = styled.div`
 `;
 
 Sizer.X = styled.div`
-  width: ${props => `${props.size}px`}
+  width: ${props => `${props.size}px`};
 `;
 
 Sizer.Y = styled.div`
-  height: ${props => `${props.size}px`}
+  height: ${props => `${props.size}px`};
 `;
 
 export { Sizer };

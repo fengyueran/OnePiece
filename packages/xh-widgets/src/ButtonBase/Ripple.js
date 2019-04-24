@@ -42,7 +42,7 @@ const StyledRipple = styled.span`
   top: 0;
   opacity: 0;
   position: absolute;
-  ${props => (props.visible && RippleVisibleStyle)};
+  ${props => props.visible && RippleVisibleStyle};
 `;
 
 const RippleChild = styled.span`
@@ -52,45 +52,44 @@ const RippleChild = styled.span`
   height: 100%;
   border-radius: 50%;
   background-color: currentColor;
-  ${props => (props.leaving && ChildLeavingStyle)};
+  ${props => props.leaving && ChildLeavingStyle};
 `;
 
 class Ripple extends React.Component {
   state = {
     visible: false,
-    leaving: false,
+    leaving: false
   };
 
   handleEnter = () => {
     this.setState({
-      visible: true,
+      visible: true
     });
   };
 
   handleExit = () => {
     this.setState({
-      leaving: true,
+      leaving: true
     });
   };
 
   render() {
-    const {
-      rippleX,
-      rippleY,
-      rippleSize,
-      ...other
-    } = this.props;
+    const { rippleX, rippleY, rippleSize, ...other } = this.props;
     const { visible, leaving } = this.state;
 
     const rippleStyles = {
       width: rippleSize,
       height: rippleSize,
       top: -(rippleSize / 2) + rippleY,
-      left: -(rippleSize / 2) + rippleX,
+      left: -(rippleSize / 2) + rippleX
     };
 
     return (
-      <Transition onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
+      <Transition
+        onEnter={this.handleEnter}
+        onExit={this.handleExit}
+        {...other}
+      >
         <StyledRipple visible={visible} style={rippleStyles}>
           <RippleChild leaving={leaving} />
         </StyledRipple>
@@ -103,11 +102,11 @@ Ripple.propTypes = {
   pulsate: PropTypes.bool,
   rippleSize: PropTypes.number.isRequired,
   rippleX: PropTypes.number.isRequired,
-  rippleY: PropTypes.number.isRequired,
+  rippleY: PropTypes.number.isRequired
 };
 
 Ripple.defaultProps = {
-  pulsate: false,
+  pulsate: false
 };
 
 export default Ripple;

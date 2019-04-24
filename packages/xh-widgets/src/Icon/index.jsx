@@ -11,21 +11,19 @@ const StyledIcon = styled.div`
   height: ${props => `${props.height}px`};
 `;
 
-const Icon = props => (
-  <StyledIcon {...props} />
-);
+const Icon = props => <StyledIcon {...props} />;
 
 Icon.propTypes = {
   src: PropTypes.string.isRequired,
   tintColor: PropTypes.string,
   width: PropTypes.number,
-  height: PropTypes.number,
+  height: PropTypes.number
 };
 
 Icon.defaultProps = {
   tintColor: '#9520f7',
   width: 20,
-  height: 20,
+  height: 20
 };
 
 export { Icon };
