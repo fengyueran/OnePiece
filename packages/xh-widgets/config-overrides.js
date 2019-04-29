@@ -7,10 +7,15 @@ const {
   useEslintRc
 } = require('customize-cra');
 
-const overrideOutput = () => config => {
-  config.output.filename = 'static/js/bundle.js';
-  delete config.optimization.splitChunks;
-  config.optimization.runtimeChunk = false;
+// entry: [
+//   isEnvDevelopment &&
+//     require.resolve('react-dev-utils/webpackHotDevClient'),
+//   paths.appIndexJs,
+// ]
+
+const overrideEntry = () => config => {
+  const entry = config.entry;
+  entry[1] = 'src/app.js';
   return config;
 };
 
@@ -20,7 +25,7 @@ module.exports = {
     useBabelRc(),
     addDecoratorsLegacy(),
     addWebpackAlias({ src: path.join(__dirname, 'src') }),
-    // overrideOutput()
+    overrideEntry()
   ),
   jest(config) {
     config.testMatch = ['**/__tests__/*.js?(x)'];
