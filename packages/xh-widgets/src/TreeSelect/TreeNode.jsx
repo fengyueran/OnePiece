@@ -67,7 +67,10 @@ const Content = styled.span`
 
 const propTypes = {
   title: PropTypes.string,
-  children: PropTypes.Node,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   onSelect: PropTypes.func
 };
 
