@@ -11,6 +11,7 @@
     "@storybook/addon-notes": "^5.0.10",
     "@storybook/addons": "^5.0.10",
     "@storybook/react": "^5.0.10",
+    "@xinghunm/eslint-config": "^0.0.8",
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.12",
     "eslint": "5.12.0",
@@ -25,9 +26,8 @@
     "react-storybook-addon-chapters": "^2.1.5",
     "react-storybook-addon-props-combinations": "^1.0.1",
     "source-map-explorer": "^1.8.0",
-    "storybook-addon-smart-knobs": "^3.3.1",
-    "storybook-readme": "^3.3.0",
-    "@xinghunm/eslint-config": "^0.0.8"
+    "storybook-addon-smart-knobs": "^4.1.2",
+    "storybook-readme": "^3.3.0"
   },
   "scripts": {
     "start": "PORT=1989 react-app-rewired start",
