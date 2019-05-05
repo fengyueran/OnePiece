@@ -67,6 +67,7 @@ const Content = styled.span`
 
 const propTypes = {
   title: PropTypes.string,
+  subData: PropTypes.array,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -74,12 +75,14 @@ const propTypes = {
   onSelect: PropTypes.func
 };
 
-const TreeNode = ({ title, onSelect, children }) => {
+const TreeNode = ({ onSelect, children, subData, ...res }) => {
+  const { title } = res;
   const [isExpanded, setIsExpanded] = useState(true);
-  const handleNodeClick = () => {
+  const handleNodeClick = e => {
+    e.stopPropagation();
     setIsExpanded(!isExpanded);
     if (onSelect) {
-      onSelect();
+      onSelect({ ...res, children: subData });
     }
   };
   return (

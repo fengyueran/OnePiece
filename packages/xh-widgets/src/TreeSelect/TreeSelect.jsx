@@ -23,26 +23,31 @@ const propTypes = {
 };
 
 const TreeSelect = ({ treeData, onSelect }) => {
+  const handleNodeSelected = selected => {
+    if (onSelect) {
+      onSelect(selected);
+    }
+  };
+
   const renderNode = data => {
     return data.map(node => {
-      const { title, key, children } = node;
+      const { key, children, ...res } = node;
       return (
-        <TreeNode key={key} data-nodeid={key} title={title}>
+        <TreeNode
+          key={key}
+          subData={children}
+          onSelect={handleNodeSelected}
+          {...res}
+        >
           {children && <Ul>{renderNode(children)}</Ul>}
         </TreeNode>
       );
     });
   };
 
-  const handleNodeClick = e => {
-    const caseId = e.target.getAttribute('nodeid');
-    if (onSelect) {
-      onSelect();
-    }
-  };
   return (
     <Container>
-      <Ul onClick={handleNodeClick}>{renderNode(treeData)}</Ul>
+      <Ul>{renderNode(treeData)}</Ul>
     </Container>
   );
 };
