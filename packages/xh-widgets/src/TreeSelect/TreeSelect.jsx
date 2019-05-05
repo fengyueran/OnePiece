@@ -30,11 +30,11 @@ const TreeSelect = ({ treeData, onSelect }) => {
   };
 
   const renderNode = data => {
-    return data.map(node => {
+    return data.map((node, index) => {
       const { key, children, ...res } = node;
       return (
         <TreeNode
-          key={key}
+          key={key || index}
           subData={children}
           onSelect={handleNodeSelected}
           {...res}
