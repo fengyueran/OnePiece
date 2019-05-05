@@ -12,11 +12,14 @@ import { Button, Welcome } from '@storybook/react/demo';
 import { FlexBox } from '../src/FlexBox';
 import { LineBox } from '../src/LineBox';
 import { VerticalBox } from '../src/VerticalBox';
-import { CircularProgressBar } from '../src/CircularProgressBar'
-import { Button as ButtonWithRipple } from '../src/Button'
-import { Icon } from '../src/Icon'
+import { CircularProgressBar } from '../src/CircularProgressBar';
+import { Button as ButtonWithRipple } from '../src/Button';
+import { Icon } from '../src/Icon';
+import TreeSelect from '../src/TreeSelect';
 import classes from './main.css';
 import icon from '../assets/next@2x.png';
+
+import { treeData } from './mock-data';
 
 const Card = styled.div`
   width: 400px;
@@ -27,16 +30,16 @@ const Card = styled.div`
     position: relative;
     left: 0;
     top: 0;
-    content: "Card";
+    content: 'Card';
   }
 `;
 
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
+storiesOf('Welcome', module).add('to Storybook', () => (
+  <Welcome showApp={linkTo('Button')} />
+));
 
 storiesOf('Widgets', module)
-  .addWithChapters(
-    'Container',
-  {
+  .addWithChapters('Container', {
     info: 'Container有三种FlexBox, LineBox以及VerticalBox。',
     chapters: [
       // List of chapters. Refer to Configuration Format section.
@@ -49,24 +52,20 @@ storiesOf('Widgets', module)
             FlexBox为弹性容器，自动换行，如下图中的Card。
           `,
             sectionFn: () => (
-            <FlexBox 
-              className={classes["container"]}
-              style={{ color: 'blue' }}
-            >
-              {
-                [1, 2, 3].map((v, k) => (
-                  <Card key={k} style={{ margin: 5 }}/>
-                ))
-              }
-            </FlexBox>),
+              <FlexBox className={classes.container} style={{ color: 'blue' }}>
+                {[1, 2, 3].map((v, k) => (
+                  <Card key={k} style={{ margin: 5 }} />
+                ))}
+              </FlexBox>
+            ),
             options: {
               showSource: true,
               allowSourceToggling: true,
               showPropTables: true,
-              allowPropTablesToggling: true,
-            },
-          },
-        ],
+              allowPropTablesToggling: true
+            }
+          }
+        ]
       },
       {
         title: '2）LineBox',
@@ -77,24 +76,20 @@ storiesOf('Widgets', module)
             LineBox使子元素水平排列，不换行，当空间不够时子元素等比缩放，如下图中的Card。
           `,
             sectionFn: () => (
-            <LineBox 
-              className={classes["container"]}
-              style={{ color: 'blue' }}
-            >
-              {
-                [1, 2, 3].map((v, k) => (
+              <LineBox className={classes.container} style={{ color: 'blue' }}>
+                {[1, 2, 3].map((v, k) => (
                   <Card key={k} />
-                ))
-              }
-            </LineBox>),
+                ))}
+              </LineBox>
+            ),
             options: {
               showSource: true,
               allowSourceToggling: true,
               showPropTables: true,
-              allowPropTablesToggling: true,
-            },
-          },
-        ],
+              allowPropTablesToggling: true
+            }
+          }
+        ]
       },
       {
         title: '3）VerticalBox',
@@ -105,41 +100,46 @@ storiesOf('Widgets', module)
             VerticalBox使子元素垂直排列，当空间不够时子元素等比缩放，如下图中的Card。
           `,
             sectionFn: () => (
-            <VerticalBox 
-              className={classes["container"]}
-              style={{ color: 'blue' }}
-            >
-              {
-                [1, 2, 3].map((v, k) => (
+              <VerticalBox
+                className={classes.container}
+                style={{ color: 'blue' }}
+              >
+                {[1, 2, 3].map((v, k) => (
                   <Card key={k} style={{ margin: 5 }} />
-                ))
-              }
-            </VerticalBox>),
+                ))}
+              </VerticalBox>
+            ),
             options: {
               showSource: true,
               allowSourceToggling: true,
               showPropTables: true,
-              allowPropTablesToggling: true,
-            },
-          },
-        ],
-      },
-    ],
+              allowPropTablesToggling: true
+            }
+          }
+        ]
+      }
+    ]
   })
   .addDecorator(withSmartKnobs)
   .add('CircularProgressBar', () => (
-      <CircularProgressBar 
-        size={100}
-        thickness={3}
-        value={10}
-        pathColor="blue"
-        trailColor="gray"
-      />))
+    <CircularProgressBar
+      size={100}
+      thickness={3}
+      value={10}
+      pathColor="blue"
+      trailColor="gray"
+    />
+  ))
   .add('Button', () => (
     <ButtonWithRipple hasRipple>
       <img src={icon} style={{ width: 25, marginRight: 5 }} />
       Submit
-    </ButtonWithRipple>))
-  .add('Icon', () => (
-      <Icon src={icon} tintColor="blue" />
+    </ButtonWithRipple>
   ))
+  .add('Icon', () => <Icon src={icon} tintColor="blue" />)
+  .add('TreeSelect', () => (
+    <TreeSelect
+      treeData={treeData}
+      onSelect={selected => console.log(selected)}
+    />
+  ));
