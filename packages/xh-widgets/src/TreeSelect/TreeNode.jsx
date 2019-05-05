@@ -48,6 +48,9 @@ const Li = styled.li`
   white-space: nowrap;
   list-style: none;
   outline: 0;
+  ul {
+    padding-left: 18px;
+  }
 `;
 
 const Content = styled.span`
