@@ -7,7 +7,19 @@ const treeData = [
       {
         title: 'Child Node1',
         value: '0-0-1',
-        key: '0-0-1'
+        key: '0-0-1',
+        children: [
+          {
+            title: 'Child Node1',
+            value: '0-0-1',
+            key: '0-0-1'
+          },
+          {
+            title: 'Child Node2',
+            value: '0-0-2',
+            key: '0-0-2'
+          }
+        ]
       },
       {
         title: 'Child Node2',
@@ -22,5 +34,4 @@ const treeData = [
     key: '0-1'
   }
 ];
-
 export { treeData };

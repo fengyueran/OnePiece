@@ -1,24 +1,50 @@
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
-import { LineBox } from './LineBox';
-import { Button } from './Button';
+import TreeSelect from './TreeSelect';
 
-const StyledButton = styled(Button)`
-  background: #fffff;
-`;
+const treeData = [
+  {
+    title: 'Node1',
+    value: '0-0',
+    key: '0-0',
+    children: [
+      {
+        title: 'Child Node1',
+        value: '0-0-1',
+        key: '0-0-1',
+        children: [
+          {
+            title: 'Child Node1',
+            value: '0-0-1',
+            key: '0-0-1'
+          },
+          {
+            title: 'Child Node2',
+            value: '0-0-2',
+            key: '0-0-2'
+          }
+        ]
+      },
+      {
+        title: 'Child Node2',
+        value: '0-0-2',
+        key: '0-0-2'
+      }
+    ]
+  },
+  {
+    title: 'Node2',
+    value: '0-1',
+    key: '0-1'
+  }
+];
 class App extends Component {
   render() {
     return (
-      <LineBox style={{ padding: 20 }}>
-        <StyledButton onClick={() => alert('clicked')}>
-          Submit
-        </StyledButton>
-        <StyledButton>
-          Submit
-        </StyledButton>
-      </LineBox>
+      <TreeSelect
+        treeData={treeData}
+        onSelect={selected => console.log(selected)}
+      />
     );
   }
 }
