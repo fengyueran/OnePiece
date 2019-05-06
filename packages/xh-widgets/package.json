@@ -3,6 +3,7 @@
   "version": "0.0.14",
   "main": "index.js",
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.0",
     "@storybook/addon-actions": "^5.0.10",
     "@storybook/addon-info": "^5.0.10",
@@ -31,7 +32,7 @@
   },
   "scripts": {
     "start": "PORT=1989 react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "rm -rf lib && NODE_ENV=production node_modules/@babel/cli/bin/babel.js --ignore src/app.js src --out-dir lib",
     "test": "react-app-rewired test",
     "coverage": "react-app-rewired test --coverage",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
