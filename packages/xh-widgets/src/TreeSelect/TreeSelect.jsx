@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TreeNode from './TreeNode';
@@ -19,37 +19,44 @@ const Ul = styled.ul`
 
 const propTypes = {
   treeData: PropTypes.array,
-  onSelect: PropTypes.func
+  onSelect: PropTypes.func,
+  nodeKey: PropTypes.string
 };
 
-const TreeSelect = ({ treeData, onSelect }) => {
+const TreeSelect = ({ nodeKey, treeData, onSelect }) => {
+  const [treeNodesStatus, setTreeNodesStatus] = useState({});
   const handleNodeSelected = selected => {
+    treeNodesStatus[selected.id] = selected.isExpanded;
+    setTreeNodesStatus({ ...treeNodesStatus });
     if (onSelect) {
       onSelect(selected);
     }
   };
 
-  const renderNode = data => {
-    return data.map((node, index) => {
-      const { key, children, ...res } = node;
-      return (
-        <TreeNode
-          key={key || index}
-          subData={children}
-          onSelect={handleNodeSelected}
-          {...res}
-        >
-          {children && <Ul>{renderNode(children)}</Ul>}
-        </TreeNode>
-      );
-    });
-  };
-
-  return (
-    <Container>
-      <Ul>{renderNode(treeData)}</Ul>
-    </Container>
+  const renderNode = (data, position) => (
+    <Ul>
+      {data.map((node, index) => {
+        const { children, ...res } = node;
+        const pos = position ? `${position}-${index}` : `${index}`;
+        const id = node[nodeKey] || pos;
+        const isExpanded = treeNodesStatus[id];
+        return (
+          <TreeNode
+            key={id}
+            subData={children}
+            isExpanded={isExpanded}
+            onSelect={handleNodeSelected}
+            id={id}
+            {...res}
+          >
+            {children && renderNode(children, pos)}
+          </TreeNode>
+        );
+      })}
+    </Ul>
   );
+
+  return <Container>{renderNode(treeData)}</Container>;
 };
 
 TreeSelect.propTypes = propTypes;
