@@ -25,9 +25,11 @@ const propTypes = {
 
 const TreeSelect = ({ nodeKey, treeData = [], onSelect }) => {
   const [treeNodesStatus, setTreeNodesStatus] = useState({});
+  const [selectedNodeId, setSelectedNodeId] = useState();
   const handleNodeSelected = selected => {
     treeNodesStatus[selected.id] = selected.isExpanded;
     setTreeNodesStatus({ ...treeNodesStatus });
+    setSelectedNodeId(selected.id);
     if (onSelect) {
       onSelect(selected);
     }
@@ -40,6 +42,7 @@ const TreeSelect = ({ nodeKey, treeData = [], onSelect }) => {
         const pos = position ? `${position}-${index}` : `${index}`;
         const id = node[nodeKey] || pos;
         const isExpanded = treeNodesStatus[id];
+        const isSelected = id === selectedNodeId;
         return (
           <TreeNode
             key={id}
@@ -47,6 +50,7 @@ const TreeSelect = ({ nodeKey, treeData = [], onSelect }) => {
             isExpanded={isExpanded}
             onSelect={handleNodeSelected}
             id={id}
+            isSelected={isSelected}
             {...res}
           >
             {children && renderNode(children, pos)}

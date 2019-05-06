@@ -63,8 +63,9 @@ const Content = styled.span`
   border-radius: 2px;
   cursor: pointer;
   transition: all 0.3s;
+  background: ${props => (props.isSelected ? '#bae7ff' : 'none')};
   :hover {
-    background: aliceblue;
+    background: ${props => (props.isSelected ? '#bae7ff' : 'aliceblue')};
   }
 `;
 
@@ -72,6 +73,7 @@ const propTypes = {
   title: PropTypes.string,
   subData: PropTypes.array,
   isExpanded: PropTypes.bool,
+  isSelected: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -83,6 +85,7 @@ const TreeNode = ({
   onSelect,
   children,
   subData,
+  isSelected,
   isExpanded = true,
   ...res
 }) => {
@@ -102,7 +105,7 @@ const TreeNode = ({
           </IconWrapper>
         )}
       </Switcher>
-      <Content>{title}</Content>
+      <Content isSelected={!children && isSelected}>{title}</Content>
       {isExpanded && children}
     </Li>
   );
