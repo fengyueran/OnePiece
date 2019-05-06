@@ -23,7 +23,7 @@ const propTypes = {
   nodeKey: PropTypes.string
 };
 
-const TreeSelect = ({ nodeKey, treeData, onSelect }) => {
+const TreeSelect = ({ nodeKey, treeData = [], onSelect }) => {
   const [treeNodesStatus, setTreeNodesStatus] = useState({});
   const handleNodeSelected = selected => {
     treeNodesStatus[selected.id] = selected.isExpanded;
