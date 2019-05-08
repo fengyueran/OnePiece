@@ -16,6 +16,7 @@ import { CircularProgressBar } from '../src/CircularProgressBar';
 import { Button as ButtonWithRipple } from '../src/Button';
 import { Icon } from '../src/Icon';
 import TreeSelect from '../src/TreeSelect';
+import Pagination from '../src/Pagination';
 import classes from './main.css';
 import icon from '../assets/next@2x.png';
 
@@ -141,5 +142,12 @@ storiesOf('Widgets', module)
     <TreeSelect
       treeData={treeData}
       onSelect={selected => console.log(selected)}
+    />
+  ))
+  .add('Pagination', () => (
+    <Pagination
+      total={100}
+      pageSize={10}
+      onPageChange={page => console.log('current page ', page)}
     />
   ));
