@@ -1,9 +1,7 @@
 module.exports = {
-  extends: [
-    'eslint-config-airbnb',
-  ].map(require.resolve),
+  extends: ["eslint-config-airbnb"].map(require.resolve),
   rules: {
-    "quotes": 0,
+    quotes: 0,
     "comma-dangle": "off",
     "no-param-reassign": "off",
     "react/forbid-prop-types": "off",
@@ -14,7 +12,7 @@ module.exports = {
     "no-trailing-spaces": "off",
     "prefer-destructuring": "off",
     "import/prefer-default-export": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
     "react/jsx-one-expression-per-line": "off",
     "react/prefer-stateless-function": "off",
     "react/destructuring-assignment": "off",
@@ -28,14 +26,15 @@ module.exports = {
     "jsx-a11y/anchor-is-valid": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "react/forbid-prop-types": "off"
+    "react/forbid-prop-types": "off",
+    "no-restricted-globals": "off"
   },
-  "env": {
-    "es6": true,
-    "node": true,
-    "mocha": true,
-    "browser": true,
-    "jquery": true,
-    "jasmine": true
+  env: {
+    es6: true,
+    node: true,
+    mocha: true,
+    browser: true,
+    jquery: true,
+    jasmine: true
   }
 };
