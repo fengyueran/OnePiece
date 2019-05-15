@@ -1,1 +1,4 @@
-export { default } from './TreeSelect';
+import TreeSelect from './TreeSelect';
+
+export default TreeSelect;
+export { TreeSelect };
