@@ -61,5 +61,4 @@ Button.defaultProps = {
   hasHover: true
 };
 
-export { Button };
 export default Button;

@@ -66,5 +66,4 @@ CircularProgressBar.defaultProps = {
   trailColor: '#F5F5F5'
 };
 
-export { CircularProgressBar };
 export default CircularProgressBar;
