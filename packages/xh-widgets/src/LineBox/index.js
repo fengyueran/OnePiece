@@ -8,4 +8,5 @@ const LineBox = styled.div`
   overflow: hidden;
 `;
 
+export { LineBox };
 export default LineBox;

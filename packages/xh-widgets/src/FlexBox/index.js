@@ -7,4 +7,5 @@ const FlexBox = styled.div`
   width: 100%;
 `;
 
+export { FlexBox };
 export default FlexBox;

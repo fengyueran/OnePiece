@@ -8,4 +8,5 @@ const VerticalBox = styled.div`
   overflow: hidden;
 `;
 
+export { VerticalBox };
 export default VerticalBox;

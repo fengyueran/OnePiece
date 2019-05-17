@@ -7,3 +7,4 @@ export * from './Sizer';
 export * from './Icon';
 export * from './utils';
 export * from './TreeSelect';
+export * from './Tabs';

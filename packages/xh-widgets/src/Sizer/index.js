@@ -12,4 +12,5 @@ Sizer.Y = styled.div`
   height: ${props => `${props.size}px`};
 `;
 
+export { Sizer };
 export default Sizer;
