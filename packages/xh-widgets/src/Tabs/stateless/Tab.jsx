@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const StyledTab = styled.div`
   position: relative;
+  box-sizing: border-box;
   display: inline-block;
   height: 100%;
   margin: 0 12px 0 0;
