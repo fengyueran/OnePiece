@@ -1,6 +1,6 @@
 {
   "name": "@xinghunm/widgets",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "main": "index.js",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
