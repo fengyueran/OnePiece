@@ -9,14 +9,15 @@ import { withSmartKnobs } from 'storybook-addon-smart-knobs';
 import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
-import { FlexBox } from '../src/FlexBox';
-import { LineBox } from '../src/LineBox';
-import { VerticalBox } from '../src/VerticalBox';
-import { CircularProgressBar } from '../src/CircularProgressBar';
-import { Button as ButtonWithRipple } from '../src/Button';
-import { Icon } from '../src/Icon';
+import FlexBox from '../src/FlexBox';
+import LineBox from '../src/LineBox';
+import VerticalBox from '../src/VerticalBox';
+import CircularProgressBar from '../src/CircularProgressBar';
+import ButtonWithRipple from '../src/Button';
+import Icon from '../src/Icon';
 import TreeSelect from '../src/TreeSelect';
 import Pagination from '../src/Pagination';
+import Tabs from '../src/Tabs';
 import classes from './main.css';
 import icon from '../assets/next@2x.png';
 
@@ -149,5 +150,11 @@ storiesOf('Widgets', module)
       total={100}
       pageSize={10}
       onPageChange={page => console.log('current page ', page)}
+    />
+  ))
+  .add('Tabs', () => (
+    <Tabs
+      tabs={['哪吒', '海贼王', '奥特曼', '变形金刚']}
+      onTabChange={tab => console.log('current tab ', tab)}
     />
   ));
