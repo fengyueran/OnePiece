@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import TreeSelect from './TreeSelect';
+import { TreeSelect } from './TreeSelect';
 
 const treeData = [
   {

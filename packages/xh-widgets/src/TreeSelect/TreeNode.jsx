@@ -53,6 +53,9 @@ const Li = styled.li`
   }
 `;
 
+const TextWrapper = styled.div`
+  display: flex;
+`;
 const Content = styled.span`
   display: inline-block;
   width: calc(100% - 24px);
@@ -63,6 +66,9 @@ const Content = styled.span`
   border-radius: 2px;
   cursor: pointer;
   transition: all 0.3s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   background: ${props => (props.isSelected ? '#bae7ff' : 'none')};
   :hover {
     background: ${props => (props.isSelected ? '#bae7ff' : 'aliceblue')};
@@ -98,14 +104,16 @@ const TreeNode = ({
   };
   return (
     <Li onClick={handleNodeClick}>
-      <Switcher>
-        {children && (
-          <IconWrapper isExpanded={isExpanded}>
-            <CaretDown />
-          </IconWrapper>
-        )}
-      </Switcher>
-      <Content isSelected={!children && isSelected}>{title}</Content>
+      <TextWrapper>
+        <Switcher>
+          {children && (
+            <IconWrapper isExpanded={isExpanded}>
+              <CaretDown />
+            </IconWrapper>
+          )}
+        </Switcher>
+        <Content isSelected={!children && isSelected}>{title}</Content>
+      </TextWrapper>
       {isExpanded && children}
     </Li>
   );
