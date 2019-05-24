@@ -14,16 +14,18 @@ const Ul = styled.ul`
   list-style: none;
   margin: 0;
   margin-top: -4px;
-  padding: 0 4px;
+  padding-left: 4px;
+  padding-right: 20px;
 `;
 
 const propTypes = {
   treeData: PropTypes.array,
   onSelect: PropTypes.func,
+  isExpanded: PropTypes.bool,
   nodeKey: PropTypes.string
 };
 
-const TreeSelect = ({ nodeKey, treeData = [], onSelect }) => {
+const TreeSelect = ({ nodeKey, treeData = [], onSelect, isExpanded }) => {
   const [treeNodesStatus, setTreeNodesStatus] = useState({});
   const [selectedNodeId, setSelectedNodeId] = useState();
   const handleNodeSelected = selected => {
@@ -41,13 +43,14 @@ const TreeSelect = ({ nodeKey, treeData = [], onSelect }) => {
         const { children, ...res } = node;
         const pos = position ? `${position}-${index}` : `${index}`;
         const id = node[nodeKey] || pos;
-        const isExpanded = treeNodesStatus[id];
+        let expanded = treeNodesStatus[id];
+        if (typeof expanded === 'undefined') expanded = isExpanded;
         const isSelected = id === selectedNodeId;
         return (
           <TreeNode
             key={id}
             subData={children}
-            isExpanded={isExpanded}
+            isExpanded={expanded}
             onSelect={handleNodeSelected}
             id={id}
             isSelected={isSelected}
