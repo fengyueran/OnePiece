@@ -6,6 +6,7 @@
     "@babel/cli": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.0",
     "@storybook/addon-actions": "^5.1.1",
+    "@storybook/addon-console": "^1.1.0",
     "@storybook/addon-info": "^5.1.1",
     "@storybook/addon-knobs": "^5.1.1",
     "@storybook/addon-links": "^5.1.1",
