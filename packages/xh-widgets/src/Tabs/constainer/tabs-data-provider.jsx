@@ -36,7 +36,7 @@ const withData = WrappedComponent => {
         });
       }
       setTabsWidth(nodesWidth);
-    }, [tabsContainerEl]);
+    }, [tabs]);
 
     const handleTabClick = e => {
       const tabIndex = e.target.getAttribute('data-index');
