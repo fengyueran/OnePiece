@@ -3,3 +3,4 @@ coverage
 lib
 build
 yarn.lock
+storybook-static
