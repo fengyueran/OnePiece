@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-import { withSmartKnobs } from 'storybook-addon-smart-knobs';
 import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
@@ -122,7 +121,7 @@ storiesOf('Widgets', module)
       }
     ]
   })
-  .addDecorator(withSmartKnobs)
+  .addDecorator(withKnobs)
   .add('CircularProgressBar', () => (
     <CircularProgressBar
       size={100}

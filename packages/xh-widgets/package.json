@@ -5,13 +5,13 @@
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.0",
-    "@storybook/addon-actions": "^5.0.10",
-    "@storybook/addon-info": "^5.0.10",
-    "@storybook/addon-knobs": "^5.0.10",
-    "@storybook/addon-links": "^5.0.10",
-    "@storybook/addon-notes": "^5.0.10",
-    "@storybook/addons": "^5.0.10",
-    "@storybook/react": "^5.0.10",
+    "@storybook/addon-actions": "^5.1.1",
+    "@storybook/addon-info": "^5.1.1",
+    "@storybook/addon-knobs": "^5.1.1",
+    "@storybook/addon-links": "^5.1.1",
+    "@storybook/addon-notes": "^5.1.1",
+    "@storybook/addons": "^5.1.1",
+    "@storybook/react": "^5.1.1",
     "@xinghunm/eslint-config": "^0.0.9",
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.12",
@@ -27,7 +27,6 @@
     "react-storybook-addon-chapters": "^2.1.5",
     "react-storybook-addon-props-combinations": "^1.0.1",
     "source-map-explorer": "^1.8.0",
-    "storybook-addon-smart-knobs": "^4.1.2",
     "storybook-readme": "^3.3.0"
   },
   "scripts": {
@@ -36,8 +35,8 @@
     "test": "react-app-rewired test",
     "coverage": "react-app-rewired test --coverage",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "files": [
     "index.js",

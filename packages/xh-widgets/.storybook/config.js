@@ -4,17 +4,19 @@ import { withKnobs } from '@storybook/addon-knobs/react';
 
 setAddon(chaptersAddon);
 addDecorator(withKnobs);
-setDefaults({  sectionOptions: {
-  showSource: false,
-  allowSourceToggling: false,
-  showPropTables: false,
-  allowPropTablesToggling: false,
-}});
+setDefaults({
+  sectionOptions: {
+    showSource: false,
+    allowSourceToggling: false,
+    showPropTables: false,
+    allowPropTablesToggling: false
+  }
+});
 
-const req = require.context('../stories', true, /__story__\.(js|jsx)$/)
+const req = require.context('../stories', true, /__story__\.(js|jsx)$/);
 
 function loadStories() {
-  req.keys().forEach(req)
+  req.keys().forEach(req);
 }
 
 configure(loadStories, module);
