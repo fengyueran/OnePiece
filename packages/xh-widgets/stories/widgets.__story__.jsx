@@ -4,7 +4,14 @@ import styled from 'styled-components';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  text,
+  boolean,
+  number,
+  color,
+  array
+} from '@storybook/addon-knobs';
 import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
@@ -121,39 +128,38 @@ storiesOf('Widgets', module)
       }
     ]
   })
-  .addDecorator(withKnobs)
   .add('CircularProgressBar', () => (
     <CircularProgressBar
-      size={100}
-      thickness={3}
-      value={10}
-      pathColor="blue"
-      trailColor="gray"
+      size={number('size', 100)}
+      thickness={number('thickness', 3)}
+      value={number('value', 10)}
+      pathColor={color('pathColor', 'blue')}
+      trailColor={color('trailColor', 'gray')}
     />
   ))
   .add('Button', () => (
-    <ButtonWithRipple hasRipple>
+    <ButtonWithRipple hasRipple={boolean('hasRipple', true)}>
       <img src={icon} style={{ width: 25, marginRight: 5 }} />
       Submit
     </ButtonWithRipple>
   ))
-  .add('Icon', () => <Icon src={icon} tintColor="blue" />)
+  .add('Icon', () => <Icon src={icon} tintColor={color('tintColor', 'blue')} />)
   .add('TreeSelect', () => (
     <TreeSelect
-      treeData={treeData}
+      treeData={array('treeData', treeData)}
       onSelect={selected => console.log(selected)}
     />
   ))
   .add('Pagination', () => (
     <Pagination
-      total={100}
-      pageSize={10}
+      total={number('total', 100)}
+      pageSize={number('pageSize', 10)}
       onPageChange={page => console.log('current page ', page)}
     />
   ))
   .add('Tabs', () => (
     <Tabs
-      tabs={['哪吒', '海贼王', '奥特曼', '变形金刚']}
+      tabs={array('tabs', ['哪吒', '海贼王', '奥特曼', '变形金刚'])}
       onTabChange={tab => console.log('current tab ', tab)}
     />
   ));
