@@ -10,7 +10,7 @@ const Container = styled.div`
 const SIZE = 44;
 
 const CircularProgressBar = props => {
-  const { size, thickness, value, trailColor, pathColor } = props;
+  const { size, thickness, value, strokeColor, railColor } = props;
   const rootStyle = {};
   const circleStyle = {};
 
@@ -33,7 +33,7 @@ const CircularProgressBar = props => {
           cy={SIZE}
           r={(SIZE - thickness) / 2}
           fill="none"
-          stroke={trailColor}
+          stroke={strokeColor}
           strokeWidth={thickness}
         />
         <circle
@@ -42,7 +42,7 @@ const CircularProgressBar = props => {
           cy={SIZE}
           r={(SIZE - thickness) / 2}
           fill="none"
-          stroke={pathColor}
+          stroke={railColor}
           strokeWidth={thickness}
         />
       </svg>
@@ -51,19 +51,28 @@ const CircularProgressBar = props => {
 };
 
 CircularProgressBar.propTypes = {
+  /** The diameter of circle. */
   size: PropTypes.number,
+
+  /** The thickness of circle. */
   thickness: PropTypes.number,
+
+  /** The value of the progress, value between 0 and 100. */
   value: PropTypes.number,
-  pathColor: PropTypes.string,
-  trailColor: PropTypes.string
+
+  /** The background color of circle bar. */
+  railColor: PropTypes.string,
+
+  /** The stroke color of progress. */
+  strokeColor: PropTypes.string
 };
 
 CircularProgressBar.defaultProps = {
   size: 40,
   thickness: 3.6,
   value: 0,
-  pathColor: '#51B5F4',
-  trailColor: '#F5F5F5'
+  railColor: '#51B5F4',
+  strokeColor: '#F5F5F5'
 };
 
 export { CircularProgressBar };

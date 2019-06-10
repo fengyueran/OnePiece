@@ -133,8 +133,8 @@ storiesOf('Widgets', module)
       size={number('size', 100)}
       thickness={number('thickness', 3)}
       value={number('value', 10)}
-      pathColor={color('pathColor', 'blue')}
-      trailColor={color('trailColor', 'gray')}
+      railColor={color('railColor', 'blue')}
+      strokeColor={color('strokeColor', 'gray')}
     />
   ))
   .add('Button', () => (
