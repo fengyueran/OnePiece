@@ -1,27 +1,49 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const Container = styled.ul`
+const Container = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  list-style: none;
+  ::after {
+    display: block;
+    clear: both;
+    content: '';
+  }
 `;
 
-const Item = styled.li.attrs(({ isShow, isTranslate }) => ({
+const itemToleft = css`
+  transform: translateX(-100%);
+`;
+
+const itemToRight = css`
+  transform: translateX(100%);
+`;
+
+const activeItemCss = css`
+  display: block;
+`;
+const itemShowCss = css`
+  display: block;
+`;
+
+const Item = styled.div.attrs(({ isShow }) => ({
   style: {
-    display: isShow ? 'block' : 'none',
-    transform: isTranslate ? `translateX(-100%)` : 'none'
+    // display: isShow ? 'block' : 'none'
+    // transform: isTranslate ? `translateX(-100%)` : 'none'
   }
 }))`
+  position: relative;
+  display: none;
+  float: left;
   width: 100%;
-  flex-shrink: 0;
-  transition: transform 6s ease-in-out;
+  margin-right: -100%;
+  backface-visibility: hidden;
+  transition: transform 6s ease-in-out, -webkit-transform 6s ease-in-out;
+  ${({ classes }) => classes && `${classes.join(' ')}`}
 `;
+
 const Img = styled.img`
   width: 100%;
   display: block;
@@ -30,52 +52,92 @@ const Img = styled.img`
 const propTypes = {
   images: PropTypes.array.isRequired
 };
-
-const Carousel = ({ images }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const containerEl = useRef(null);
-  const [lastIndex, setLastIndex] = useState();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const index = activeIndex === images.length - 1 ? 0 : activeIndex + 1;
-      const children = containerEl.current.children;
-      const el = children[activeIndex];
-      setLastIndex(activeIndex);
-      setActiveIndex(index);
-      el.addEventListener(
-        'transitionend',
-        () => {
-          setLastIndex();
-        },
-        false
-      );
-    }, 10000);
-    return () => {
-      clearTimeout(timer);
+function triggerBrowserReflow(node) {
+  node.offsetHeight; // eslint-disable-line no-unused-expressions
+}
+class Carousel extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      activeIndex: 0,
+      activeClass: [itemShowCss],
+      previousClass: [itemShowCss]
     };
-  }, [activeIndex, images.length]);
+  }
 
-  return (
-    <Container ref={containerEl}>
-      {images.map(({ src }, index) => {
-        const isActive = activeIndex === index;
-        const isShow = isActive || lastIndex === index;
-        const isTranslate = isShow && typeof lastIndex !== 'undefined';
-        return (
-          <Item
-            key={index}
-            active={isActive}
-            isShow={isShow}
-            isTranslate={isTranslate}
-          >
-            <Img src={src} />
-          </Item>
-        );
-      })}
-    </Container>
-  );
-};
+  componentDidMount() {
+    const { images } = this.props;
+    this.timer = setTimeout(() => {
+      this.setState(
+        ({ activeIndex }) => {
+          const index = activeIndex === images.length - 1 ? 0 : activeIndex + 1;
+          return { activeIndex: index, previousActiveIndex: activeIndex };
+        },
+        () => {
+          const children = this.containerEl.children;
+          const el = children[this.state.activeIndex];
+          // console.log(el.offsetHeight);
+          triggerBrowserReflow(el);
+          triggerBrowserReflow(children[1]);
+          this.setState(
+            {
+              previousClass: [activeItemCss, itemToleft],
+              activeClass: [itemShowCss]
+            },
+            () => {
+              console.log('111111111111', el);
+              el.addEventListener(
+                'transitionend',
+                () => {
+                  this.setState({
+                    previousActiveIndex: undefined,
+                    previousClass: undefined,
+                    activeClass: [itemShowCss]
+                  });
+                  console.log('222222222222');
+                },
+                false
+              );
+            }
+          );
+        }
+      );
+    }, 1000);
+  }
+
+  getContainer = ref => {
+    this.containerEl = ref;
+  };
+
+  render() {
+    const { images } = this.props;
+    const {
+      activeIndex,
+      previousActiveIndex,
+      activeClass,
+      previousClass
+    } = this.state;
+    console.log('activeIndex', activeIndex);
+    console.log('lastIndex', previousActiveIndex);
+    return (
+      <Container ref={this.getContainer}>
+        {images.map(({ src }, index) => {
+          const isActiveItem = activeIndex === index;
+          const isPreviousItem = previousActiveIndex === index;
+          let classes;
+          if (isActiveItem) classes = activeClass;
+          if (isPreviousItem) classes = previousClass;
+
+          return (
+            <Item key={index} classes={classes}>
+              <Img src={src} />
+            </Item>
+          );
+        })}
+      </Container>
+    );
+  }
+}
 
 Carousel.propTypes = propTypes;
 
