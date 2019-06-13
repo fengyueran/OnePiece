@@ -24,6 +24,7 @@ import Icon from '../src/Icon';
 import TreeSelect from '../src/TreeSelect';
 import Pagination from '../src/Pagination';
 import Tabs from '../src/Tabs';
+import Spin from '../src/Spin';
 import classes from './main.css';
 import icon from '../assets/next@2x.png';
 
@@ -162,4 +163,9 @@ storiesOf('Widgets', module)
       tabs={array('tabs', ['哪吒', '海贼王', '奥特曼', '变形金刚'])}
       onTabChange={tab => console.log('current tab ', tab)}
     />
+  ))
+  .add('Spin', () => (
+    <div style={{ width: '100px', height: '100px', border: 'solid' }}>
+      <Spin />
+    </div>
   ));
