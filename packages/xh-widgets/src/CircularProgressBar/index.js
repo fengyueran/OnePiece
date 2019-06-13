@@ -75,5 +75,4 @@ CircularProgressBar.defaultProps = {
   strokeColor: '#F5F5F5'
 };
 
-export { CircularProgressBar };
 export default CircularProgressBar;

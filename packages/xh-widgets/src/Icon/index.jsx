@@ -26,5 +26,4 @@ Icon.defaultProps = {
   height: 20
 };
 
-export { Icon };
 export default Icon;
