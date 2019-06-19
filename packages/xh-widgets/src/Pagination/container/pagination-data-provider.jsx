@@ -21,7 +21,7 @@ const withData = WrappedComponent => {
         const page = +valueStr;
         setCurrentPage(page);
         if (onPageChange) {
-          onPageChange(page - 1);
+          onPageChange(page);
         }
       }
     };
@@ -31,16 +31,17 @@ const withData = WrappedComponent => {
         const page = currentPage - 1;
         setCurrentPage(page);
         if (onPageChange) {
-          onPageChange(page - 1);
+          onPageChange(page);
         }
       }
     };
 
     const jumpNextPage = () => {
       if (currentPage < totalPages) {
-        setCurrentPage(currentPage + 1);
+        const page = currentPage + 1;
+        setCurrentPage(page);
         if (onPageChange) {
-          onPageChange(currentPage);
+          onPageChange(page);
         }
       }
     };
@@ -52,7 +53,7 @@ const withData = WrappedComponent => {
       }
       setCurrentPage(page);
       if (onPageChange) {
-        onPageChange(page - 1);
+        onPageChange(page);
       }
     };
 
@@ -63,7 +64,7 @@ const withData = WrappedComponent => {
       }
       setCurrentPage(page);
       if (onPageChange) {
-        onPageChange(page - 1);
+        onPageChange(page);
       }
     };
 
