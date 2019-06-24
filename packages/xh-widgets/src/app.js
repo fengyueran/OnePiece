@@ -1,50 +1,28 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { TreeSelect } from './TreeSelect';
+import styled from 'styled-components';
+import Carousel from './Carousel';
+import slice1 from './assets/slice1.png';
+import slice2 from './assets/slice2.png';
+import slice3 from './assets/slice3.png';
 
-const treeData = [
-  {
-    title: 'Node1',
-    value: '0-0',
-    key: '0-0',
-    children: [
-      {
-        title: 'Child Node1',
-        value: '0-0-1',
-        key: '0-0-1',
-        children: [
-          {
-            title: 'Child Node1',
-            value: '0-0-1',
-            key: '0-0-1'
-          },
-          {
-            title: 'Child Node2',
-            value: '0-0-2',
-            key: '0-0-2'
-          }
-        ]
-      },
-      {
-        title: 'Child Node2',
-        value: '0-0-2',
-        key: '0-0-2'
-      }
-    ]
-  },
-  {
-    title: 'Node2',
-    value: '0-1',
-    key: '0-1'
-  }
-];
+const Container = styled.div`
+  /* position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  margin-top: 200px; */
+  width: 300px;
+  margin-left: 200px;
+`;
+
+const images = [{ src: slice1 }, { src: slice2 }, { src: slice3 }];
 class App extends Component {
   render() {
+    console.log('app*************');
     return (
-      <TreeSelect
-        treeData={treeData}
-        onSelect={selected => console.log(selected)}
-      />
+      <Container>
+        <Carousel images={images} />
+      </Container>
     );
   }
 }
