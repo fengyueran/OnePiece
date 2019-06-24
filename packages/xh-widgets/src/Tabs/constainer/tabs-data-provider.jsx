@@ -3,11 +3,22 @@ import PropTypes from 'prop-types';
 import { computedStyle } from './utils';
 
 const withData = WrappedComponent => {
-  const Container = ({ tabs = [], onTabChange }) => {
+  const propTypes = {
+    tabs: PropTypes.array.isRequired,
+    activeTabIndex: PropTypes.number,
+    onTabChange: PropTypes.func
+  };
+
+  const Container = ({ tabs = [], onTabChange, activeTabIndex }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [tabsWidth, setTabsWidth] = useState({});
     const tabsContainerEl = useRef(null);
-
+    if (
+      typeof activeTabIndex !== 'undefined' &&
+      activeTabIndex !== selectedIndex
+    ) {
+      setSelectedIndex(activeTabIndex);
+    }
     let bottomBarPos = 0;
 
     const calcBottomBarPos = () => {
@@ -47,6 +58,7 @@ const withData = WrappedComponent => {
         }
       }
     };
+
     return (
       <WrappedComponent
         tabs={tabs}
@@ -59,10 +71,7 @@ const withData = WrappedComponent => {
     );
   };
 
-  Container.propTypes = {
-    tabs: PropTypes.array.isRequired,
-    onTabChange: PropTypes.func
-  };
+  Container.propTypes = propTypes;
   return Container;
 };
 
