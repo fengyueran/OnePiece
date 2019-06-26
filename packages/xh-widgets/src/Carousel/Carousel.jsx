@@ -13,35 +13,51 @@ const Container = styled.div`
   }
 `;
 
+const itemShow = css`
+  display: block;
+`;
+
+const transition = css`
+  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
+`;
+
+const displayAndLocateItem = css`
+  position: absolute;
+  top: 0;
+  display: block;
+`;
+
 const itemToleft = css`
+  ${displayAndLocateItem}
   transform: translateX(-100%);
 `;
 
 const itemToRight = css`
+  ${displayAndLocateItem}
   transform: translateX(100%);
 `;
 
-const activeItemCss = css`
-  display: block;
-`;
-const itemShowCss = css`
-  display: block;
+const previousSlideToLeft = css`
+  ${itemShow}
+  transform: translateX(-100%);
+  ${transition}
 `;
 
-const Item = styled.div.attrs(({ isShow }) => ({
-  style: {
-    // display: isShow ? 'block' : 'none'
-    // transform: isTranslate ? `translateX(-100%)` : 'none'
-  }
-}))`
+const currentSlideToLeft = css`
+  ${itemShow}
+  position: absolute;
+  top: 0;
+  transform: translateX(0);
+  ${transition}
+`;
+
+const Item = styled.div`
   position: relative;
   display: none;
-  float: left;
   width: 100%;
-  margin-right: -100%;
   backface-visibility: hidden;
-  transition: transform 6s ease-in-out, -webkit-transform 6s ease-in-out;
-  ${({ classes }) => classes && `${classes.join(' ')}`}
+  ${({ isCurrent, currentClass }) => isCurrent && currentClass}
+  ${({ isPrevious, previousClass }) => isPrevious && previousClass}
 `;
 
 const Img = styled.img`
@@ -52,7 +68,9 @@ const Img = styled.img`
 const propTypes = {
   images: PropTypes.array.isRequired
 };
+
 function triggerBrowserReflow(node) {
+  // get offsetHeight will trigger reflow whitch make animation work
   node.offsetHeight; // eslint-disable-line no-unused-expressions
 }
 class Carousel extends React.Component {
@@ -60,53 +78,71 @@ class Carousel extends React.Component {
     super();
     this.state = {
       activeIndex: 0,
-      activeClass: [itemShowCss],
-      previousClass: [itemShowCss]
+      currentClass: itemShow
     };
+    this.direction = 'next';
+    this._sliding = false;
   }
 
-  componentDidMount() {
-    const { images } = this.props;
-    this.timer = setTimeout(() => {
-      this.setState(
-        ({ activeIndex }) => {
-          const index = activeIndex === images.length - 1 ? 0 : activeIndex + 1;
-          return { activeIndex: index, previousActiveIndex: activeIndex };
-        },
-        () => {
-          const children = this.containerEl.children;
-          const el = children[this.state.activeIndex];
-          // console.log(el.offsetHeight);
-          triggerBrowserReflow(el);
-          triggerBrowserReflow(children[1]);
-          this.setState(
-            {
-              previousClass: [activeItemCss, itemToleft],
-              activeClass: [itemShowCss]
-            },
-            () => {
-              console.log('111111111111', el);
-              el.addEventListener(
-                'transitionend',
-                () => {
-                  this.setState({
-                    previousActiveIndex: undefined,
-                    previousClass: undefined,
-                    activeClass: [itemShowCss]
-                  });
-                  console.log('222222222222');
-                },
-                false
-              );
-            }
-          );
-        }
-      );
-    }, 1000);
-  }
+  componentDidMount() {}
 
   getContainer = ref => {
     this.containerEl = ref;
+  };
+
+  moveNextSlide = ({ activeIndex }) => {
+    const { images } = this.props;
+    const index = activeIndex === images.length - 1 ? 0 : activeIndex + 1;
+    const transitionClass =
+      this.direction === 'next' ? itemToRight : itemToleft;
+    return {
+      activeIndex: index,
+      previousActiveIndex: activeIndex,
+      previousClass: itemShow,
+      currentClass: transitionClass
+    };
+  };
+
+  getActiveItem = () => {
+    const children = this.containerEl.children;
+    const el = children[this.state.activeIndex];
+    return el;
+  };
+
+  enableAnimation = () => {
+    const el = this.getActiveItem();
+    triggerBrowserReflow(el);
+  };
+
+  onTransitonEnd = () => {
+    this.setState({
+      previousClass: '',
+      currentClass: itemShow
+    });
+    const activeEl = this.getActiveItem();
+    activeEl.removeEventListener('transitionend', this.onTransitonEnd);
+    this._sliding = false;
+  };
+
+  translateXSlide = () => {
+    this.enableAnimation();
+    this.setState(
+      {
+        previousClass: previousSlideToLeft,
+        currentClass: currentSlideToLeft
+      },
+      () => {
+        const activeEl = this.getActiveItem();
+        activeEl.addEventListener('transitionend', this.onTransitonEnd);
+      }
+    );
+  };
+
+  next = () => {
+    if (!this._sliding) {
+      this._sliding = true;
+      this.setState(this.moveNextSlide, this.translateXSlide);
+    }
   };
 
   render() {
@@ -114,24 +150,20 @@ class Carousel extends React.Component {
     const {
       activeIndex,
       previousActiveIndex,
-      activeClass,
+      currentClass,
       previousClass
     } = this.state;
-    console.log('activeIndex', activeIndex);
-    console.log('lastIndex', previousActiveIndex);
-    return (
-      <Container ref={this.getContainer}>
-        {images.map(({ src }, index) => {
-          const isActiveItem = activeIndex === index;
-          const isPreviousItem = previousActiveIndex === index;
-          let classes;
-          if (isActiveItem) classes = activeClass;
-          if (isPreviousItem) classes = previousClass;
 
-          return (
-            <Item key={index} classes={classes}>
+    return (
+      <Container ref={this.getContainer} onClick={this.next}>
+        {images.map(({ src }, index) => {
+          const isCurrent = activeIndex === index;
+          const isPrevious = previousActiveIndex === index;
+          return React.cloneElement(
+            <Item key={index}>
               <Img src={src} />
-            </Item>
+            </Item>,
+            { isCurrent, isPrevious, currentClass, previousClass }
           );
         })}
       </Container>
