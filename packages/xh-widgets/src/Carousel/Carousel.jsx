@@ -1,16 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import Next from '../Icons/Next';
+import Prev from '../Icons/Prev';
 
 const Container = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
-  ::after {
-    display: block;
-    clear: both;
-    content: '';
+`;
+
+const IndicatorView = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+
+const SlideBtnWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  width: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #707070;
+  :hover {
+    color: #fff;
+    cursor: pointer;
   }
+`;
+
+const PreBtn = styled(SlideBtnWrapper)`
+  left: 0;
+`;
+
+const NextBtn = styled(SlideBtnWrapper)`
+  right: 0;
 `;
 
 const itemShow = css`
@@ -43,10 +73,14 @@ const previousSlideToLeft = css`
   ${transition}
 `;
 
-const currentSlideToLeft = css`
+const previousSlideToRight = css`
   ${itemShow}
-  position: absolute;
-  top: 0;
+  transform: translateX(100%);
+  ${transition}
+`;
+
+const currentSlideToCenter = css`
+  ${displayAndLocateItem}
   transform: translateX(0);
   ${transition}
 `;
@@ -59,44 +93,35 @@ const Item = styled.div`
   ${({ isCurrent, currentClass }) => isCurrent && currentClass}
   ${({ isPrevious, previousClass }) => isPrevious && previousClass}
 `;
-
-const Img = styled.img`
-  width: 100%;
-  display: block;
-`;
-
-const propTypes = {
-  images: PropTypes.array.isRequired
-};
-
 function triggerBrowserReflow(node) {
   // get offsetHeight will trigger reflow whitch make animation work
   node.offsetHeight; // eslint-disable-line no-unused-expressions
 }
 class Carousel extends React.Component {
+  static propTypes = {
+    children: PropTypes.array.isRequired
+  };
+
   constructor() {
     super();
     this.state = {
       activeIndex: 0,
       currentClass: itemShow
     };
-    this.direction = 'next';
+    this._direction = 'next';
     this._sliding = false;
+    this._nextIndex = 0;
   }
-
-  componentDidMount() {}
 
   getContainer = ref => {
     this.containerEl = ref;
   };
 
   moveNextSlide = ({ activeIndex }) => {
-    const { images } = this.props;
-    const index = activeIndex === images.length - 1 ? 0 : activeIndex + 1;
     const transitionClass =
-      this.direction === 'next' ? itemToRight : itemToleft;
+      this._direction === 'next' ? itemToRight : itemToleft;
     return {
-      activeIndex: index,
+      activeIndex: this._nextIndex,
       previousActiveIndex: activeIndex,
       previousClass: itemShow,
       currentClass: transitionClass
@@ -126,10 +151,12 @@ class Carousel extends React.Component {
 
   translateXSlide = () => {
     this.enableAnimation();
+    const previousClass =
+      this._direction === 'next' ? previousSlideToLeft : previousSlideToRight;
     this.setState(
       {
-        previousClass: previousSlideToLeft,
-        currentClass: currentSlideToLeft
+        previousClass,
+        currentClass: currentSlideToCenter
       },
       () => {
         const activeEl = this.getActiveItem();
@@ -138,15 +165,32 @@ class Carousel extends React.Component {
     );
   };
 
-  next = () => {
+  handleSlideToPrev = () => {
     if (!this._sliding) {
       this._sliding = true;
+      this._direction = 'prev';
+      const { children } = this.props;
+      const { activeIndex } = this.state;
+      this._nextIndex =
+        activeIndex === 0 ? children.length - 1 : activeIndex - 1;
+      this.setState(this.moveNextSlide, this.translateXSlide);
+    }
+  };
+
+  handleSlideToNext = () => {
+    if (!this._sliding) {
+      this._sliding = true;
+      this._direction = 'next';
+      const { children } = this.props;
+      const { activeIndex } = this.state;
+      this._nextIndex =
+        activeIndex === children.length - 1 ? 0 : activeIndex + 1;
       this.setState(this.moveNextSlide, this.translateXSlide);
     }
   };
 
   render() {
-    const { images } = this.props;
+    const { children } = this.props;
     const {
       activeIndex,
       previousActiveIndex,
@@ -155,22 +199,28 @@ class Carousel extends React.Component {
     } = this.state;
 
     return (
-      <Container ref={this.getContainer} onClick={this.next}>
-        {images.map(({ src }, index) => {
+      <Container ref={this.getContainer}>
+        {children.map((child, index) => {
           const isCurrent = activeIndex === index;
           const isPrevious = previousActiveIndex === index;
-          return React.cloneElement(
-            <Item key={index}>
-              <Img src={src} />
-            </Item>,
-            { isCurrent, isPrevious, currentClass, previousClass }
-          );
+          return React.cloneElement(<Item key={index}>{child}</Item>, {
+            isCurrent,
+            isPrevious,
+            currentClass,
+            previousClass
+          });
         })}
+        <IndicatorView>
+          <PreBtn onClick={this.handleSlideToPrev}>
+            <Prev />
+          </PreBtn>
+          <NextBtn onClick={this.handleSlideToNext}>
+            <Next />
+          </NextBtn>
+        </IndicatorView>
       </Container>
     );
   }
 }
 
-Carousel.propTypes = propTypes;
-
-export default React.memo(Carousel);
+export default Carousel;
