@@ -6,8 +6,12 @@ import Prev from '../Icons/Prev';
 
 const Container = styled.div`
   width: 100%;
+  height: 100%;
+  min-width: 100px;
+  min-height: 100px;
   overflow: hidden;
   position: relative;
+  background: antiquewhite;
 `;
 
 const IndicatorView = styled.div`
@@ -35,6 +39,20 @@ const SlideBtnWrapper = styled.div`
   }
 `;
 
+const Item = styled.div`
+  position: relative;
+  display: none;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  backface-visibility: hidden;
+  align-items: center;
+  justify-content: center;
+
+  ${({ isCurrent, currentClass }) => isCurrent && currentClass}
+  ${({ isPrevious, previousClass }) => isPrevious && previousClass}
+`;
+
 const PreBtn = styled(SlideBtnWrapper)`
   left: 0;
 `;
@@ -44,7 +62,7 @@ const NextBtn = styled(SlideBtnWrapper)`
 `;
 
 const itemShow = css`
-  display: block;
+  display: flex;
 `;
 
 const transition = css`
@@ -54,7 +72,7 @@ const transition = css`
 const displayAndLocateItem = css`
   position: absolute;
   top: 0;
-  display: block;
+  display: flex;
 `;
 
 const itemToleft = css`
@@ -85,14 +103,6 @@ const currentSlideToCenter = css`
   ${transition}
 `;
 
-const Item = styled.div`
-  position: relative;
-  display: none;
-  width: 100%;
-  backface-visibility: hidden;
-  ${({ isCurrent, currentClass }) => isCurrent && currentClass}
-  ${({ isPrevious, previousClass }) => isPrevious && previousClass}
-`;
 function triggerBrowserReflow(node) {
   // get offsetHeight will trigger reflow whitch make animation work
   node.offsetHeight; // eslint-disable-line no-unused-expressions
