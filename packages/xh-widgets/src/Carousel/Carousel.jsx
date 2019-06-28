@@ -11,7 +11,7 @@ const Container = styled.div`
   min-height: 100px;
   overflow: hidden;
   position: relative;
-  background: antiquewhite;
+  background: #9ac6ca;
 `;
 
 const IndicatorView = styled.div`
@@ -37,6 +37,33 @@ const SlideBtnWrapper = styled.div`
     color: #fff;
     cursor: pointer;
   }
+`;
+
+const DotsWrapper = styled.ul`
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+`;
+
+const Dot = styled.li`
+  height: 3px;
+  width: ${props => (props.isActive ? '25px' : '18px')};
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  background-clip: padding-box;
+  margin: 0 5px;
+  background-color: ${props =>
+    props.isActive ? '#fff' : 'rgba(0, 0, 0, 0.65)'};
+  ${props => (props.isActive ? 'opacity: 1;' : 'opacity: 0.3')};
+  :hover {
+    cursor: pointer;
+    ${props => !props.isActive && 'opacity: 0.7'};
+  }
+  transition: all 0.5s;
 `;
 
 const Item = styled.div`
@@ -199,6 +226,21 @@ class Carousel extends React.Component {
     }
   };
 
+  handleSelect = e => {
+    const { activeIndex } = this.state;
+    const selectedIndex = e.target.getAttribute('data-index');
+    if (
+      selectedIndex !== null &&
+      +selectedIndex !== activeIndex &&
+      !this._sliding
+    ) {
+      this._sliding = true;
+      this._direction = +selectedIndex > activeIndex ? 'next' : 'prev';
+      this._nextIndex = +selectedIndex;
+      this.setState(this.moveNextSlide, this.translateXSlide);
+    }
+  };
+
   render() {
     const { children } = this.props;
     const {
@@ -227,6 +269,15 @@ class Carousel extends React.Component {
           <NextBtn onClick={this.handleSlideToNext}>
             <Next />
           </NextBtn>
+          <DotsWrapper onClick={this.handleSelect}>
+            {children.map((child, index) => (
+              <Dot
+                key={index}
+                data-index={index}
+                isActive={activeIndex === index}
+              />
+            ))}
+          </DotsWrapper>
         </IndicatorView>
       </Container>
     );
