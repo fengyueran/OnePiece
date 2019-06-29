@@ -25,6 +25,7 @@ import TreeSelect from '../src/TreeSelect';
 import Pagination from '../src/Pagination';
 import Tabs from '../src/Tabs';
 import Spin from '../src/Spin';
+import Carousel from '../src/Carousel/Carousel';
 import classes from './main.css';
 import icon from '../assets/next@2x.png';
 
@@ -167,5 +168,17 @@ storiesOf('Widgets', module)
   .add('Spin', () => (
     <div style={{ width: '100px', height: '100px', border: 'solid' }}>
       <Spin />
+    </div>
+  ))
+  .add('Carousel', () => (
+    <div style={{ width: '500px', height: '280px', border: 'solid' }}>
+      <Carousel
+        interval={number('interval', 2000)}
+        onChange={index => console.log('current slide ', index)}
+      >
+        {[1, 2, 3, 4, 5, 6].map(v => (
+          <div key={v}>{v}</div>
+        ))}
+      </Carousel>
     </div>
   ));
