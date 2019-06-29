@@ -137,6 +137,7 @@ function triggerBrowserReflow(node) {
 class Carousel extends React.Component {
   static propTypes = {
     interval: PropTypes.number,
+    onChange: PropTypes.func,
     children: PropTypes.array.isRequired
   };
 
@@ -214,6 +215,8 @@ class Carousel extends React.Component {
   };
 
   translateXSlide = () => {
+    const { onChange } = this.props;
+    const { activeIndex } = this.state;
     this.enableAnimation();
     const previousClass =
       this._direction === 'next' ? previousSlideToLeft : previousSlideToRight;
@@ -225,6 +228,9 @@ class Carousel extends React.Component {
       () => {
         const activeEl = this.getActiveItem();
         activeEl.addEventListener('transitionend', this.onTransitonEnd);
+        if (onChange) {
+          onChange(activeIndex);
+        }
       }
     );
   };
