@@ -136,7 +136,12 @@ function triggerBrowserReflow(node) {
 }
 class Carousel extends React.Component {
   static propTypes = {
+    interval: PropTypes.number,
     children: PropTypes.array.isRequired
+  };
+
+  static defaultProps = {
+    interval: 4000
   };
 
   constructor() {
@@ -149,6 +154,28 @@ class Carousel extends React.Component {
     this._sliding = false;
     this._nextIndex = 0;
   }
+
+  componentDidMount() {
+    this.circleSlide();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._interval);
+  }
+
+  circleSlide = () => {
+    const { interval } = this.props;
+    this._interval = setInterval(this.handleSlideToNext, interval);
+  };
+
+  onMoveEnter = () => {
+    clearInterval(this._interval);
+    this._sliding = false;
+  };
+
+  onMouseLeave = () => {
+    this.circleSlide();
+  };
 
   getContainer = ref => {
     this.containerEl = ref;
@@ -251,7 +278,11 @@ class Carousel extends React.Component {
     } = this.state;
 
     return (
-      <Container ref={this.getContainer}>
+      <Container
+        ref={this.getContainer}
+        onMouseEnter={this.onMoveEnter}
+        onMouseLeave={this.onMouseLeave}
+      >
         {children.map((child, index) => {
           const isCurrent = activeIndex === index;
           const isPrevious = previousActiveIndex === index;
