@@ -136,9 +136,14 @@ function triggerBrowserReflow(node) {
 }
 class Carousel extends React.Component {
   static propTypes = {
+    /** The interval between automatically cycling an item. */
     interval: PropTypes.number,
+
+    /** The call back func when slide finish. */
     onChange: PropTypes.func,
-    children: PropTypes.array.isRequired
+
+    /** The items which will slide */
+    children: PropTypes.func.isRequired
   };
 
   static defaultProps = {
