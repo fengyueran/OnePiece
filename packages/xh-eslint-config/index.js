@@ -27,7 +27,9 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/forbid-prop-types": "off",
-    "no-restricted-globals": "off"
+    "no-restricted-globals": "off",
+    "global-require": "off",
+    "import/no-extraneous-dependencies": "off"
   },
   env: {
     es6: true,
