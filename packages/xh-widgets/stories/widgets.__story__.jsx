@@ -1,5 +1,4 @@
-/*eslint-disable*/
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { storiesOf } from '@storybook/react';
@@ -10,7 +9,8 @@ import {
   boolean,
   number,
   color,
-  array
+  array,
+  object
 } from '@storybook/addon-knobs';
 import { linkTo } from '@storybook/addon-links';
 
@@ -26,6 +26,7 @@ import Pagination from '../src/Pagination';
 import Tabs from '../src/Tabs';
 import Spin from '../src/Spin';
 import Carousel from '../src/Carousel/Carousel';
+import Modal from './Modal';
 import classes from './main.css';
 import icon from '../assets/next@2x.png';
 
@@ -181,4 +182,12 @@ storiesOf('Widgets', module)
         ))}
       </Carousel>
     </div>
+  ))
+  .add('Modal', () => (
+    <Modal
+      // visible={boolean('visible', false)}
+      centered={boolean('centered', true)}
+      dialogStyle={object('dialogStyle', { top: 150 })}
+      maskStyle={object('maskStyle', { background: '#ABC7F3' })}
+    />
   ));
