@@ -14,5 +14,5 @@ Modal.confirm = componentProps => {
     componentProps
   );
 };
+Modal.dialogMgr = dialogMgr;
 export default Modal;
-export { dialogMgr };

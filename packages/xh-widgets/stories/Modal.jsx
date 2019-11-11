@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Modal, { dialogMgr } from '../src/Modal';
+import Modal from '../src/Modal';
 import Button from '../src/Button';
+
+const { dialogMgr } = Modal;
 
 const StyledModal = styled.div`
   width: 100%;
