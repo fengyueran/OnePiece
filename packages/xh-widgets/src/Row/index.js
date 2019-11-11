@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-const VerticalBox = styled.div`
+const Row = styled.div`
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  flex-direction: column;
+  align-items: center;
   overflow: hidden;
 `;
 
-export default VerticalBox;
+export default Row;

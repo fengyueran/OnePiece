@@ -1,6 +1,6 @@
 export { default as FlexBox } from './FlexBox';
-export { default as LineBox } from './LineBox';
-export { default as VerticalBox } from './VerticalBox';
+export { default as Row } from './Row';
+export { default as Col } from './Col';
 export { default as CircularProgressBar } from './CircularProgressBar';
 export { default as Button } from './Button';
 export { default as Sizer } from './Sizer';
@@ -8,4 +8,5 @@ export { default as Icon } from './Icon';
 export { default as TreeSelect } from './TreeSelect';
 export { default as Tabs } from './Tabs';
 export { default as Spin } from './Spin';
+export { default as Modal } from './Modal';
 export * from './utils';

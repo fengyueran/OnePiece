@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LineBox Shallow LineBox snapshot 1`] = `
+exports[`Row Shallow Row snapshot 1`] = `
 <div
   className="sc-bdVaJa cQusm"
 >

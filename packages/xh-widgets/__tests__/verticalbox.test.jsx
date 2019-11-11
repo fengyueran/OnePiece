@@ -1,47 +1,38 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import { VerticalBox } from '../src/VerticalBox';
+import { Col } from '../src/Col';
 
 const setup = (Component, props) => {
   const { children, ...res } = props;
-  const wrapper = shallow(
-    <Component {...res}>
-      {children}
-    </Component>
-  );
+  const wrapper = shallow(<Component {...res}>{children}</Component>);
   return wrapper;
 };
 
-describe('VerticalBox Shallow', () => {
+describe('Col Shallow', () => {
   const children = [
     <div key="children1" id="children1" />,
     <div key="children2" id="children2" />
   ];
   const props = {
-    id: "VerticalBox",
-    children,
+    id: 'Col',
+    children
   };
 
-  const wrapper = setup(VerticalBox, props);
+  const wrapper = setup(Col, props);
   console.log(wrapper.debug());
 
-  it('VerticalBox should be render', () => {
-    expect(wrapper.find('#VerticalBox').exists()).toBe(true); 
+  it('Col should be render', () => {
+    expect(wrapper.find('#Col').exists()).toBe(true);
   });
 
-  it('VerticalBox should be render children', () => {
-    expect(wrapper.find('#VerticalBox').children().length).toBe(children.length); 
+  it('Col should be render children', () => {
+    expect(wrapper.find('#Col').children().length).toBe(children.length);
   });
 
-  it('VerticalBox snapshot', () => {
-    const Instance = (
-      <VerticalBox>
-        {children}
-      </VerticalBox>);
-    const tree = renderer
-      .create(Instance)
-      .toJSON();
+  it('Col snapshot', () => {
+    const Instance = <Col>{children}</Col>;
+    const tree = renderer.create(Instance).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

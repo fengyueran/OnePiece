@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-const LineBox = styled.div`
+const Col = styled.div`
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
   overflow: hidden;
 `;
 
-export default LineBox;
+export default Col;

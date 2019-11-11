@@ -16,8 +16,8 @@ import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
 import FlexBox from '../src/FlexBox';
-import LineBox from '../src/LineBox';
-import VerticalBox from '../src/VerticalBox';
+import Row from '../src/Row';
+import Col from '../src/Col';
 import CircularProgressBar from '../src/CircularProgressBar';
 import ButtonWithRipple from '../src/Button';
 import Icon from '../src/Icon';
@@ -87,11 +87,11 @@ storiesOf('Widgets', module)
             LineBox使子元素水平排列，不换行，当空间不够时子元素等比缩放，如下图中的Card。
           `,
             sectionFn: () => (
-              <LineBox className={classes.container} style={{ color: 'blue' }}>
+              <Row className={classes.container} style={{ color: 'blue' }}>
                 {[1, 2, 3].map((v, k) => (
                   <Card key={k} />
                 ))}
-              </LineBox>
+              </Row>
             ),
             options: {
               showSource: true,
@@ -111,14 +111,11 @@ storiesOf('Widgets', module)
             VerticalBox使子元素垂直排列，当空间不够时子元素等比缩放，如下图中的Card。
           `,
             sectionFn: () => (
-              <VerticalBox
-                className={classes.container}
-                style={{ color: 'blue' }}
-              >
+              <Col className={classes.container} style={{ color: 'blue' }}>
                 {[1, 2, 3].map((v, k) => (
                   <Card key={k} style={{ margin: 5 }} />
                 ))}
-              </VerticalBox>
+              </Col>
             ),
             options: {
               showSource: true,

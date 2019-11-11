@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import LineBox from '../../LineBox';
-import VerticalBox from '../../VerticalBox';
+import Row from '../../Row';
+import Col from '../../Col';
 import Tab from './Tab';
 
-const Container = styled(VerticalBox)`
+const Container = styled(Col)`
   position: relative;
   height: 100%;
 `;
@@ -45,7 +45,7 @@ const Tabs = props => {
 
   return (
     <Container>
-      <LineBox ref={getRef} onClick={onClick}>
+      <Row ref={getRef} onClick={onClick}>
         {tabs.map((v, index) => (
           <Tab
             key={v}
@@ -54,7 +54,7 @@ const Tabs = props => {
             selected={index === selectedIndex}
           />
         ))}
-      </LineBox>
+      </Row>
       <TabBottomBar tabWidth={activeTabWidth} translateX={bottomBarPos} />
     </Container>
   );
