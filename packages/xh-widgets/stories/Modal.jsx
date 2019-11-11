@@ -60,6 +60,17 @@ const ModalDemo = (
       >
         Open Modal with dialogMgr
       </Button>
+      <Button
+        onClick={() => {
+          Modal.confirm({
+            title: '这是Modal Confirm 的标题',
+            content: '这是Modal Confirm的内容'
+          });
+        }}
+        style={{ zIndex: 5000 }}
+      >
+        Modal.confirm
+      </Button>
       <Modal visible={visible} {...props}>
         <StyledModal />
       </Modal>

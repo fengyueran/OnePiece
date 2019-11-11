@@ -14,7 +14,7 @@ const dialogMgr = (() => {
     }
   };
 
-  const showDialog = (dialogInfo = {}) => {
+  const showDialog = (dialogInfo = {}, componentProps) => {
     const { name, component: Component, props } = dialogInfo;
     if (!name) {
       throw new Error('Dialog name is missing');
@@ -30,10 +30,10 @@ const dialogMgr = (() => {
     let modalNode = document.createElement('div');
     document.body.appendChild(modalNode);
 
-    const render = modalProps => {
+    const render = (modalProps, closeDialog) => {
       ReactDOM.render(
         <Modal {...modalProps} {...props}>
-          <Component />
+          <Component closeDialog={closeDialog} {...componentProps} />
         </Modal>,
         modalNode
       );
@@ -46,11 +46,11 @@ const dialogMgr = (() => {
         modalNode.parentNode.removeChild(modalNode);
         modalNode = null;
       };
-      render({ visible: false, portal: true, afterClose: removeNode });
+      render({ visible: false, afterClose: removeNode });
     };
     _dialogGroup[name] = closeDialog;
 
-    render({ visible: true, portal: true });
+    render({ visible: true, portal: true }, closeDialog);
 
     return { closeDialog };
   };
