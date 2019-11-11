@@ -1,6 +1,6 @@
 {
   "name": "@xinghunm/eslint-config",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "index.js",
   "dependencies": {
     "eslint": "^5.15.3",

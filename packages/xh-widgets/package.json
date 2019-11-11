@@ -1,6 +1,6 @@
 {
   "name": "@xinghunm/widgets",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "main": "index.js",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -13,7 +13,7 @@
     "@storybook/addon-notes": "^5.1.1",
     "@storybook/addons": "^5.1.1",
     "@storybook/react": "^5.1.1",
-    "@xinghunm/eslint-config": "^0.0.9",
+    "@xinghunm/eslint-config": "^0.0.10",
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.12",
     "eslint": "5.12.0",
