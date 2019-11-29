@@ -89,7 +89,6 @@ const ModalDialog = ({
       centered={centered}
     >
       <Dialog
-        top={top}
         portal={portal}
         visible={modalVisible}
         ref={dialogRef}
