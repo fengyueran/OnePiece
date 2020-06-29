@@ -1,7 +1,11 @@
 {
   "name": "onepiece",
   "private": false,
-  "devDependencies": {
-    "lerna": "^3.4.1"
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build"
+  },
+  "dependencies": {
+    "lerna": "^3.22.1"
   }
 }
