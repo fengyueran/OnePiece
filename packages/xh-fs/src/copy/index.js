@@ -54,6 +54,9 @@ const preprocessDestinationPath = (source, destination, options) => {
   }
 
   if (options.parents) {
+    if (options.sourceRoot) {
+      return path.join(destination, source.replace(options.sourceRoot, ''));
+    }
     const dirname = path.dirname(source);
     const parsedDirectory = path.parse(dirname);
     return path.join(destination, dirname.replace(parsedDirectory.root, path.sep), basename);

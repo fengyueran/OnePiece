@@ -1,6 +1,6 @@
 {
   "name": "@xinghunm/fs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "devDependencies": {
     "@xinghunm/eslint-config": "^0.0.11",

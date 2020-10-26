@@ -3,10 +3,10 @@ const copy = require('../copy');
 
 const cp = async (source, dest) => {
   try {
-    const cwd = path.dirname(dest);
+    const sourceRoot = path.dirname(source);
     const copyProcess = copy(source, dest, {
       parents: true,
-      cwd,
+      sourceRoot,
     }).on('progress', (progress) => {
       console.log('progress', progress);
     });
@@ -20,4 +20,4 @@ const cp = async (source, dest) => {
     throw err;
   }
 };
-cp('/Users/xinghunm/xinghun/data/UploaderTestData', '/Users/xinghunm/xinghun/data/tmp');
+cp('/Users/xinghunm/xinghun/data/test', '/Users/xinghunm/xinghun/data/tmp');
