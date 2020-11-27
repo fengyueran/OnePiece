@@ -9,6 +9,7 @@ const junk = require('junk');
 const pFilter = require('p-filter');
 const CpyError = require('./cpy-error');
 const cpFile = require('./copy-file');
+const walk = require('../walk');
 
 const defaultOptions = {
   ignoreJunk: true,
@@ -90,8 +91,8 @@ module.exports = (
 
     let files;
     try {
-      files = await globby(source, options);
-
+      // files = await globby(source, options);
+      files = walk(source);
       if (options.ignoreJunk) {
         files = files.filter((file) => junk.not(path.basename(file)));
       }
