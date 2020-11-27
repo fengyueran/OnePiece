@@ -53,3 +53,4 @@ const walk = (source, options) => {
 };
 
 module.exports = walk;
+export default walk;
